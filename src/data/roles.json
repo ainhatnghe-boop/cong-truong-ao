@@ -1,0 +1,16 @@
+[
+  { "id": "ROLE-01", "title": "Giám đốc dự án", "group": "staff", "skills": ["Điều hành tổng thể", "Quản lý hợp đồng EPC", "Báo cáo HĐQT"], "authority": "Phê duyệt tiến độ tổng, điều chỉnh nguồn lực giữa các gói thầu" },
+  { "id": "ROLE-02", "title": "Chỉ huy trưởng công trường", "group": "staff", "skills": ["Biện pháp thi công", "Điều phối mặt bằng", "Lập kế hoạch 3 tuần"], "authority": "Điều phối nhân lực, thiết bị trong gói thầu" },
+  { "id": "ROLE-03", "title": "Kỹ sư tư vấn giám sát", "group": "staff", "skills": ["Nghiệm thu công việc", "ITP", "Kiểm tra vật liệu đầu vào"], "authority": "Ký biên bản nghiệm thu, phát hành NCR" },
+  { "id": "ROLE-04", "title": "Kỹ sư QA/QC", "group": "staff", "skills": ["Kiểm tra mối hàn NDT", "Hồ sơ chất lượng", "Hiệu chuẩn thiết bị đo"], "authority": "Phát hành NCR, yêu cầu dừng công việc không đạt" },
+  { "id": "ROLE-05", "title": "Cán bộ an toàn (HSE)", "group": "staff", "skills": ["Đánh giá rủi ro JSA", "Huấn luyện an toàn", "Ứng cứu khẩn cấp"], "authority": "Duyệt giấy phép làm việc (PTW), dừng thi công khi mất an toàn" },
+  { "id": "ROLE-06", "title": "Kỹ sư kế hoạch", "group": "staff", "skills": ["Primavera P6", "EVM", "Báo cáo tiến độ tuần"], "authority": "Cập nhật tiến độ chuẩn (baseline) sau khi được duyệt" },
+  { "id": "ROLE-07", "title": "Kỹ sư trắc đạc", "group": "staff", "skills": ["Toàn đạc điện tử", "Định vị tim trục", "Quan trắc lún"], "authority": "Xác nhận số liệu cao độ, toạ độ" },
+  { "id": "ROLE-08", "title": "Thợ hàn", "group": "craft", "skills": ["Hàn TIG/SMAW", "Hàn thép 9% Ni", "Chứng chỉ 6G"], "authority": "Thực hiện công việc theo PTW được duyệt" },
+  { "id": "ROLE-09", "title": "Công nhân cốt thép – bê tông", "group": "craft", "skills": ["Gia công cốt thép", "Lắp dựng cốp pha", "Đổ và bảo dưỡng bê tông"], "authority": "Thực hiện theo bản vẽ thi công được duyệt" },
+  { "id": "ROLE-10", "title": "Thợ điện", "group": "craft", "skills": ["Lắp đặt thiết bị cao áp", "Đấu nối cáp", "Khoá – treo thẻ LOTO"], "authority": "Thực hiện công việc điện theo PTW" },
+  { "id": "ROLE-11", "title": "Vận hành cẩu", "group": "craft", "skills": ["Cẩu tháp", "Cẩu bánh xích", "Lập phương án cẩu lắp"], "authority": "Từ chối nâng hạ khi gió vượt ngưỡng hoặc không có PTW" },
+  { "id": "ROLE-12", "title": "Thợ lắp dựng kết cấu thép", "group": "craft", "skills": ["Lắp dựng thép", "Siết bu lông cường độ cao", "Làm việc trên cao"], "authority": "Thực hiện theo PTW làm việc trên cao" },
+  { "id": "ROLE-13", "title": "Lái xe / vận tải", "group": "craft", "skills": ["Xe tải nặng", "Xe bồn bê tông", "Giao nhận vật tư"], "authority": "Vận chuyển theo lệnh điều xe" },
+  { "id": "ROLE-14", "title": "Người xi nhan, móc cáp (rigger)", "group": "craft", "skills": ["Ra hiệu cẩu", "Móc cáp, chọn cáp", "Kiểm tra phụ kiện nâng"], "authority": "Dừng nâng hạ khi phát hiện nguy hiểm" }
+]

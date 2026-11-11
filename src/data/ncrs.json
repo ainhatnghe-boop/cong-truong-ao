@@ -1,0 +1,6 @@
+[
+  { "id": "NCR-001", "title": "Mối hàn vòng tôn 9% Ni không đạt RT tại đường hàn số 14", "zoneId": "ZONE-01", "contractorId": "CTR-03", "raisedById": "WK-04", "date": "2026-10-30", "due": "2026-11-15", "severity": "major", "status": "action", "action": "Khoét sửa, hàn lại, chụp RT 100% vành 6" },
+  { "id": "NCR-002", "title": "Lớp bê tông bảo vệ cột tầng 5 nhà điều hành thiếu 10 mm", "zoneId": "ZONE-08", "contractorId": "CTR-04", "raisedById": "WK-03", "date": "2026-11-02", "due": "2026-11-12", "severity": "minor", "status": "open", "action": "Đề xuất biện pháp xử lý bằng vữa sửa chữa, trình TVGS" },
+  { "id": "NCR-003", "title": "Bu lông neo cột cổng TBA lệch tim 8 mm", "zoneId": "ZONE-05", "contractorId": "CTR-05", "raisedById": "WK-03", "date": "2026-09-20", "due": "2026-10-05", "severity": "major", "status": "closed", "action": "Gia công bản đế khoan lại lỗ, thiết kế chấp thuận" },
+  { "id": "NCR-004", "title": "Cọc ống thép P-37 lệch vị trí vượt dung sai", "zoneId": "ZONE-06", "contractorId": "CTR-06", "raisedById": "WK-04", "date": "2026-10-12", "due": "2026-10-31", "severity": "major", "status": "open", "action": "Chờ tư vấn thiết kế kiểm toán lại sức chịu tải" }
+]

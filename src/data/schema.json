@@ -1,0 +1,18 @@
+{
+  "$comment": "NGUỒN DUY NHẤT về cấu trúc CSDL. Khoá = tiền tố id. file = <table>.json. refs: trường tham chiếu đơn (xxxId) -> tiền tố; listRefs: trường danh sách (xxxIds) -> tiền tố. Dùng chung cho src/data/index.js và scripts/check-data.mjs.",
+  "tables": {
+    "PRJ": { "table": "projects", "label": "Dự án", "refs": { "directorId": "WK" } },
+    "PKG": { "table": "packages", "label": "Gói thầu", "refs": { "projectId": "PRJ", "contractorId": "CTR", "managerId": "WK" } },
+    "CTR": { "table": "contractors", "label": "Đơn vị / nhà thầu", "refs": {} },
+    "ROLE": { "table": "roles", "label": "Chức danh", "refs": {} },
+    "ZONE": { "table": "zones", "label": "Hạng mục / khu vực", "refs": { "packageId": "PKG" } },
+    "RT": { "table": "routes", "label": "Tuyến đường nội bộ", "refs": {} },
+    "WK": { "table": "workers", "label": "Nhân lực", "refs": { "roleId": "ROLE", "contractorId": "CTR", "zoneId": "ZONE" } },
+    "EQ": { "table": "equipment", "label": "Thiết bị thi công", "refs": { "zoneId": "ZONE", "routeId": "RT", "operatorId": "WK", "contractorId": "CTR" } },
+    "TSK": { "table": "tasks", "label": "Công việc tiến độ", "refs": { "zoneId": "ZONE", "assigneeId": "WK" } },
+    "MS": { "table": "milestones", "label": "Mốc tiến độ", "refs": { "packageId": "PKG" } },
+    "HSE": { "table": "hse", "label": "Quan sát an toàn (HSE)", "refs": { "zoneId": "ZONE", "reporterId": "WK" } },
+    "NCR": { "table": "ncrs", "label": "Phiếu không phù hợp (NCR)", "refs": { "zoneId": "ZONE", "contractorId": "CTR", "raisedById": "WK" } },
+    "PTW": { "table": "permits", "label": "Giấy phép làm việc (PTW)", "refs": { "zoneId": "ZONE", "holderId": "WK", "approverId": "WK" } }
+  }
+}

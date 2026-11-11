@@ -1,0 +1,63 @@
+{
+  "$comment": "Kịch bản hội thoại (MVP, không cần API). Placeholder: {name} {project} {role} {roleDesc} {tasks} {ppe} {company}. TutorialSystem đọc qua interface GuideProvider — có thể thay bằng AI hội thoại sau.",
+  "guideName": "Trợ lý hướng dẫn công trường",
+  "guide": {
+    "welcome": [
+      "Chào mừng bạn đến với công trường!",
+      "Tôi là trợ lý hướng dẫn của dự án {project}.",
+      "Trước khi bắt đầu công việc, chúng ta cần hoàn thành phần định hướng, kiểm tra trang bị bảo hộ và tìm hiểu những khu vực được phép tiếp cận.",
+      "Sau đó tôi sẽ hướng dẫn bạn đến vị trí làm việc đầu tiên.",
+      "Bạn nhận vị trí {role}: {roleDesc}",
+      "Công việc đặc trưng của bạn: {tasks}."
+    ],
+    "controls": [
+      "Điều khiển: W A S D (hoặc phím mũi tên) để đi, giữ Shift để chạy. Bấm vào cảnh rồi di chuột để xoay camera (Esc để thả chuột), cuộn chuột để phóng to. Bấm CHUỘT PHẢI vào mặt đất để nhân vật tự đi tới đó.",
+      "E để tương tác, M mở bản đồ, J xem nhiệm vụ, H xem lại hướng dẫn, ESC mở menu."
+    ],
+    "ppe": [
+      "Công trường yêu cầu tối thiểu: {ppe}.",
+      "Đến ki-ốt ở cổng và nhấn E. Thiếu món nào, ki-ốt sẽ cấp phát và bạn trang bị ngay.",
+      "PPE bắt buộc không thể tháo ra khi đang ở trong công trường."
+    ],
+    "safety": [
+      "Bây giờ là huấn luyện an toàn đầu vào. Hãy nhấn E với tôi để làm bài kiểm tra ngắn.",
+      "Bạn phải trả lời đúng tất cả câu hỏi mới được vào bên trong hàng rào."
+    ],
+    "map": [
+      "Nhấn M để mở bản đồ. Màu xanh là vùng an toàn, vàng là vùng hạn chế, cam cần giấy phép, đỏ là vùng nguy hiểm.",
+      "Hệ thống sẽ cảnh báo khi bạn đến gần và chặn lại nếu bạn chưa đủ điều kiện vào vùng đó."
+    ],
+    "office": [
+      "Tốt lắm! Giờ hãy đi theo vạch dẫn đường tới Văn phòng chỉ huy. Tôi sẽ đi trước."
+    ],
+    "first-task": [
+      "Nhấn E tại văn phòng để nhận phiếu giao việc đầu tiên theo nghề của bạn.",
+      "Mỗi công việc có quy trình riêng. Tôi chỉ hiển thị bước hiện tại và gợi ý bước tiếp theo."
+    ],
+    "workfront": [
+      "Hoàn thành các bước chuẩn bị (bản vẽ, vật tư, PPE, giấy phép nếu có) rồi đi đến hạng mục được giao.",
+      "Bấm \"Dẫn tôi đến nơi làm việc\" nếu bạn cần đường đi."
+    ],
+    "observe": [
+      "Đây là hạng mục của bạn. Đến gần và nhấn E để xem tiến độ hiện tại."
+    ],
+    "do-work": [
+      "Thực hiện bước chính của quy trình. Nếu cần giữ phím E, hãy đứng yên tại vị trí cho đến khi thanh tiến độ đầy."
+    ],
+    "report": [
+      "Kiểm tra chất lượng xong thì quay về văn phòng báo cáo. Nếu không đạt, phải làm lại bước đó."
+    ],
+    "done": [
+      "Xuất sắc! Bạn đã hoàn thành ngày đầu tiên tại công trường.",
+      "Bạn có thể nhận nhiệm vụ mới ở văn phòng, hoặc tự do tham quan các khu vực được phép."
+    ]
+  },
+  "npc": {
+    "foreman": ["Tổ hôm nay đủ 8 người, đã họp an toàn đầu ca.", "Vật tư về đủ, đang chờ nghiệm thu bước trước.", "Anh/chị cứ kiểm tra, có gì tôi xử lý ngay."],
+    "hse": ["Nhớ kiểm tra giấy phép còn hiệu lực trước khi làm việc nhé.", "Thấy mất an toàn thì dừng việc và báo ngay."],
+    "storekeeper": ["Kho mở cửa từ 6h30. Ký nhận vật tư ở quầy.", "PPE thiếu thì nhận ở đây, ký sổ cấp phát."],
+    "engineer": ["Bản vẽ phát hành mới đã treo ở bảng cạnh văn phòng.", "Hôm nay ưu tiên mũi thi công đang chậm tiến độ."],
+    "operator": ["Máy đã kiểm tra đầu ca. Đừng đứng trong bán kính quay của máy.", "Chỉ làm việc khi có người xi nhan."],
+    "qaqc": ["Nghiệm thu bước trước chưa đạt thì không được thi công bước sau.", "Mời anh/chị ký biên bản kiểm tra tại bảng cạnh văn phòng."]
+  }
+}

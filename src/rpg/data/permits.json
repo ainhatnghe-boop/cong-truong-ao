@@ -1,0 +1,37 @@
+{
+  "$comment": "PTW SIMULATOR — cơ chế học tập/gameplay, KHÔNG phải hệ thống cấp giấy phép làm việc thực. conditions: người chơi phải chọn ĐÚNG các điều kiện (correct=true) và KHÔNG chọn điều kiện sai. validityMin: phút chơi.",
+  "types": [
+    { "id": "lifting", "label": "Nâng hạ / cẩu lắp", "validityMin": 30, "approvers": ["hse", "site-manager"], "conditions": [
+      { "text": "Đã kiểm tra biểu đồ tải và bán kính cẩu", "correct": true },
+      { "text": "Đã rào chắn khu vực dưới tải, cử người xi nhan", "correct": true },
+      { "text": "Gió vượt ngưỡng nhưng vẫn cẩu cho kịp tiến độ", "correct": false },
+      { "text": "Cáp, móc cẩu đã được kiểm tra đầu ca", "correct": true }
+    ] },
+    { "id": "excavation", "label": "Đào đất / hố đào", "validityMin": 30, "approvers": ["hse", "site-manager"], "conditions": [
+      { "text": "Đã dò công trình ngầm (cáp, ống) trước khi đào", "correct": true },
+      { "text": "Có lan can/rào chắn quanh mép hố", "correct": true },
+      { "text": "Để đất đào sát mép hố cho tiện", "correct": false },
+      { "text": "Có lối lên xuống an toàn", "correct": true }
+    ] },
+    { "id": "hot-work", "label": "Công việc nóng (hàn, cắt)", "validityMin": 30, "approvers": ["hse", "site-manager"], "conditions": [
+      { "text": "Đã dọn vật liệu dễ cháy trong bán kính làm việc", "correct": true },
+      { "text": "Có bình chữa cháy và người canh lửa", "correct": true },
+      { "text": "Hàn gần bồn chứa nhiên liệu chưa súc rửa", "correct": false }
+    ] },
+    { "id": "electrical", "label": "Làm việc với điện (LOTO)", "validityMin": 30, "approvers": ["hse", "electrical-engineer"], "conditions": [
+      { "text": "Đã cắt điện, khoá và treo thẻ (LOTO)", "correct": true },
+      { "text": "Đã kiểm tra không còn điện áp", "correct": true },
+      { "text": "Làm việc khi tủ còn mang điện để tiết kiệm thời gian", "correct": false }
+    ] },
+    { "id": "confined", "label": "Không gian hạn chế", "validityMin": 20, "approvers": ["hse"], "conditions": [
+      { "text": "Đã đo khí (O2, khí độc, khí cháy) đạt yêu cầu", "correct": true },
+      { "text": "Có người canh bên ngoài và phương án cứu hộ", "correct": true },
+      { "text": "Vào một mình, không cần báo ai", "correct": false }
+    ] },
+    { "id": "height", "label": "Làm việc trên cao", "validityMin": 30, "approvers": ["hse", "site-manager"], "conditions": [
+      { "text": "Dây an toàn toàn thân được móc vào điểm neo", "correct": true },
+      { "text": "Sàn thao tác có lan can, ván chắn chân", "correct": true },
+      { "text": "Tháo dây an toàn khi di chuyển cho nhanh", "correct": false }
+    ] }
+  ]
+}

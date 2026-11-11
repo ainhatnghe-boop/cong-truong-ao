@@ -1,0 +1,15 @@
+[
+  {
+    "id": "PRJ-01",
+    "code": "HD-LNG",
+    "name": "Trung tâm Điện khí LNG Hải Đăng (demo)",
+    "description": "Siêu dự án tích hợp: kho LNG 2×180.000 m³, nhà máy điện chu trình hỗn hợp 1.500 MW, TBA 500kV đấu nối, cảng nhập LNG và hạ tầng phụ trợ. Dữ liệu minh hoạ (demo).",
+    "location": "Khu kinh tế ven biển (demo)",
+    "investment": 50000,
+    "start": "2025-03-01",
+    "finish": "2028-12-31",
+    "lastLtiDate": "2025-06-12",
+    "directorId": "WK-01",
+    "color": "#1F5EFF"
+  }
+]

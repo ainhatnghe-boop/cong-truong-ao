@@ -1,0 +1,17 @@
+{
+  "$comment": "characterPresets — mẫu nhân vật nhanh cho màn hình tạo nhân vật và ngoại hình NPC. Cấu trúc giống character trong hồ sơ v2 (thiếu trường thì lấy mặc định).",
+  "presets": [
+    { "id": "p-engineer", "label": "Kỹ sư hiện trường", "appearance": { "bodyFrame": "male", "hair": "side", "faceShape": "oval", "skin": "#D9A57B" }, "outfit": { "id": "engineer" }, "ppeStyle": { "helmetColor": "white", "helmetStyle": "cap", "vestColor": "orange" }, "accessories": ["tablet"] },
+    { "id": "p-female-hse", "label": "Cán bộ an toàn", "appearance": { "bodyFrame": "female", "hair": "bun", "eyes": "almond", "skin": "#E8B98F" }, "outfit": { "id": "hse" }, "ppeStyle": { "helmetColor": "green", "helmetStyle": "cap", "vestColor": "lime" }, "accessories": ["radio", "lanyard"] },
+    { "id": "p-worker", "label": "Công nhân lắp dựng", "appearance": { "bodyFrame": "male", "build": "sturdy", "hair": "buzz", "facialHair": "stubble", "skin": "#A86F48" }, "outfit": { "id": "worker" }, "ppeStyle": { "helmetColor": "yellow", "helmetStyle": "cap", "vestColor": "orange", "bootsColor": "brown" }, "accessories": ["toolbelt"] },
+    { "id": "p-manager", "label": "Quản lý dự án", "appearance": { "bodyFrame": "female", "hair": "long", "mouth": "smile", "skin": "#F3D2B3" }, "outfit": { "id": "manager" }, "ppeStyle": { "helmetColor": "white", "helmetStyle": "full", "vestColor": "lime" }, "accessories": ["lanyard", "watch"] }
+  ],
+  "npc": {
+    "guide": { "appearance": { "bodyFrame": "female", "hair": "side", "mouth": "smile" }, "outfit": { "id": "supervisor", "top": "#1E5AA8" }, "ppeStyle": { "helmetColor": "blue", "vestColor": "lime" }, "accessories": ["tablet"] },
+    "engineer": { "appearance": { "hair": "short", "eyes": "normal" }, "outfit": { "id": "engineer" }, "ppeStyle": { "helmetColor": "white" }, "accessories": ["eyeglasses"] },
+    "storekeeper": { "appearance": { "build": "heavy", "facialHair": "mustache", "hair": "buzz" }, "outfit": { "id": "worker", "top": "#5B4636" }, "ppeStyle": { "helmetColor": "yellow" }, "accessories": [] },
+    "hse": { "appearance": { "bodyFrame": "female", "hair": "bun" }, "outfit": { "id": "hse" }, "ppeStyle": { "helmetColor": "green", "vestColor": "lime" }, "accessories": ["radio"] },
+    "foreman": { "appearance": { "build": "sturdy", "facialHair": "beard", "hair": "short" }, "outfit": { "id": "worker" }, "ppeStyle": { "helmetColor": "red" }, "accessories": ["toolbelt"] },
+    "qaqc": { "appearance": { "bodyFrame": "female", "hair": "short", "eyes": "almond" }, "outfit": { "id": "qaqc" }, "ppeStyle": { "helmetColor": "blue" }, "accessories": ["tablet", "lanyard"] }
+  }
+}

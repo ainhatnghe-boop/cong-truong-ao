@@ -1,0 +1,84 @@
+{
+  "$comment": "CharacterAssetRegistry — bộ dựng nhân vật. kind: procedural | gltf. capabilities: nhóm ngoại hình bộ dựng hỗ trợ (UI khoá nhóm không hỗ trợ). GLB/GLTF: chỉ thêm asset có GIẤY PHÉP RÕ RÀNG (ghi vào 'license'); animations: map trạng thái → tên clip; skinMaterials: tên material nhận màu da; attach: tên bone/node để gắn PPE procedural. dev=true: chỉ hiện khi mở ?dev=1.",
+  "assets": [
+    {
+      "id": "procedural-v2",
+      "kind": "procedural",
+      "label": "Nhân vật dựng thủ tục (mặc định)",
+      "license": "Mã nguồn dự án",
+      "capabilities": ["bodyFrame", "height", "build", "shoulders", "torso", "faceShape", "eyes", "nose", "mouth", "facialHair", "skin", "hair", "hairColor", "outfit", "ppe", "accessories"],
+      "animations": { "idle": "procedural", "walk": "procedural", "run": "procedural", "interact": "procedural" }
+    },
+    {
+      "id": "gltf-test-dummy",
+      "kind": "gltf",
+      "dev": true,
+      "label": "Ma-nơ-canh GLTF kiểm thử pipeline",
+      "url": "assets/characters/test-dummy.gltf",
+      "license": "CC0 — tự tạo bằng scripts/make-test-gltf.mjs để kiểm thử đường nạp GLTF",
+      "scale": 1,
+      "capabilities": ["height", "skin", "ppe"],
+      "animations": { "idle": "Idle", "walk": "Walk", "run": "Run", "interact": "Interact" },
+      "skinMaterials": ["Skin"],
+      "attach": { "head": "Head" }
+    },
+    {
+      "id": "gltf-cong-nhan-bao-ho",
+      "kind": "gltf",
+      "label": "Công nhân bảo hộ (PPE liền khối)",
+      "url": "assets/characters/cong_nhan_bao_ho_lien_mach.glb",
+      "license": "Sở hữu dự án — model tự tạo, toàn quyền sử dụng",
+      "scale": 0.9459,
+      "capabilities": ["height", "skin"],
+      "skinMaterials": ["Warm natural skin"]
+    },
+    {
+      "id": "gltf-cong-nhan-animated",
+      "kind": "gltf",
+      "label": "Công nhân công trường (có animation)",
+      "url": "assets/characters/cong_nhan_cong_truong_animated.glb",
+      "license": "Sở hữu dự án — model tự tạo, toàn quyền sử dụng",
+      "scale": 0.9368,
+      "capabilities": ["height", "skin"],
+      "animations": { "idle": "Idle", "walk": "Walk", "run": "Run" },
+      "skinMaterials": ["Warm natural skin", "Skin"]
+    },
+    {
+      "id": "gltf-cong-nhan-a-rig",
+      "kind": "gltf",
+      "label": "Công nhân A · áo liền thân (rig đỉnh, 7 động tác)",
+      "url": "assets/characters/cong_nhan_a_rigged.glb",
+      "license": "Sở hữu dự án — dựng bằng script Blender riêng (tài liệu/21.1, 21.2), toàn quyền sử dụng",
+      "scale": 0.9496,
+      "capabilities": ["height", "ppe"],
+      "animations": { "idle": "DUNG_NGHI", "walk": "CHAY_CHAM", "run": "CHAY_NHANH", "jump": "NHAY_TAI_CHO" },
+      "ppeNodes": { "helmet": "CONG_NHAN_A_HELMET", "vest": "CONG_NHAN_A_VEST", "boots": "CONG_NHAN_A_BOOTS" },
+      "attach": { "head": "mixamorigHead", "handL": "mixamorigLeftHand", "handR": "mixamorigRightHand", "hips": "mixamorigHips" }
+    },
+    {
+      "id": "gltf-cong-nhan-b-rig",
+      "kind": "gltf",
+      "label": "Công nhân B · áo sơ mi, miếng đầu gối (rig đỉnh, 7 động tác)",
+      "url": "assets/characters/cong_nhan_b_rigged.glb",
+      "license": "Sở hữu dự án — dựng bằng script Blender riêng (tài liệu/21.1, 21.2), toàn quyền sử dụng",
+      "scale": 0.9496,
+      "capabilities": ["height", "ppe"],
+      "animations": { "idle": "DUNG_NGHI", "walk": "CHAY_CHAM", "run": "CHAY_NHANH", "jump": "NHAY_TAI_CHO" },
+      "ppeNodes": { "helmet": "CONG_NHAN_B_HELMET", "vest": "CONG_NHAN_B_VEST", "boots": "CONG_NHAN_B_BOOTS" },
+      "attach": { "head": "mixamorigHead", "handL": "mixamorigLeftHand", "handR": "mixamorigRightHand", "hips": "mixamorigHips" }
+    },
+    {
+      "id": "gltf-cong-nhan-c-rig",
+      "kind": "gltf",
+      "label": "Công nhân C · nữ (rig đỉnh, 7 động tác)",
+      "url": "assets/characters/cong_nhan_c_rigged.glb",
+      "license": "Sở hữu dự án — dựng bằng script Blender riêng (tài liệu/21.1, 21.2), toàn quyền sử dụng",
+      "scale": 1.0100,
+      "capabilities": ["height", "ppe"],
+      "animations": { "idle": "DUNG_NGHI", "walk": "CHAY_CHAM", "run": "CHAY_NHANH", "jump": "NHAY_TAI_CHO" },
+      "ppeNodes": { "helmet": "CONG_NHAN_C_HELMET", "vest": "CONG_NHAN_C_VEST", "boots": "CONG_NHAN_C_BOOTS" },
+      "attach": { "head": "mixamorigHead", "handL": "mixamorigLeftHand", "handR": "mixamorigRightHand", "hips": "mixamorigHips" }
+    }
+  ],
+  "default": "procedural-v2"
+}

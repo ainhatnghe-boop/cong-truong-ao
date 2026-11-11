@@ -1,0 +1,12 @@
+{
+  "$comment": "Phụ kiện CHỈ NGOẠI HÌNH — không bao giờ được tính là PPE, không mở được vùng, không thay huấn luyện/PTW.",
+  "items": [
+    { "id": "eyeglasses", "label": "Kính cận", "icon": "👓", "part": "eyeglasses", "conflicts": ["goggles"], "desc": "Kính thuốc gọng mảnh. Không thay thế kính bảo hộ." },
+    { "id": "radio", "label": "Bộ đàm", "icon": "📻", "part": "radio", "desc": "Đeo trên ngực áo." },
+    { "id": "tablet", "label": "Máy tính bảng", "icon": "📱", "part": "tablet", "desc": "Cầm tay trái (bản vẽ số)." },
+    { "id": "lanyard", "label": "Thẻ tên dây đeo", "icon": "🪪", "part": "lanyard", "desc": "Thẻ nhân viên đeo cổ." },
+    { "id": "toolbelt", "label": "Đai dụng cụ", "icon": "🧰", "part": "toolbelt", "desc": "Đai lưng có túi dụng cụ." },
+    { "id": "backpack", "label": "Ba lô", "icon": "🎒", "part": "backpack", "desc": "Ba lô kỹ thuật." },
+    { "id": "watch", "label": "Đồng hồ", "icon": "⌚", "part": "watch", "desc": "Đồng hồ tay trái." }
+  ]
+}

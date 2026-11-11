@@ -1,0 +1,17 @@
+{
+  "$comment": "Huấn luyện mô phỏng (quiz). Trả lời đúng tất cả câu để đạt. perSite=true: phải học lại khi sang công trường khác.",
+  "trainings": [
+    { "id": "induction", "label": "Huấn luyện an toàn đầu vào", "perSite": true, "questions": [
+      { "q": "Khi vào công trường, trang bị bắt buộc tối thiểu là gì?", "options": ["Mũ, giày bảo hộ và áo phản quang", "Chỉ cần mũ bảo hộ", "Không cần nếu chỉ đi tham quan"], "answer": 0 },
+      { "q": "Gặp biển báo vùng nguy hiểm khi chưa có giấy phép, bạn làm gì?", "options": ["Đi nhanh qua cho kịp việc", "Dừng lại, không vào và báo người phụ trách", "Tháo biển báo ra"], "answer": 1 },
+      { "q": "Khi phát hiện tình huống mất an toàn, bạn nên…", "options": ["Bỏ qua, không phải việc của mình", "Dừng công việc và báo cáo ngay cho HSE/chỉ huy", "Chụp ảnh đăng mạng xã hội"], "answer": 1 }
+    ] },
+    { "id": "lifting-awareness", "label": "Nhận biết an toàn nâng hạ", "perSite": false, "questions": [
+      { "q": "Khi cẩu đang nâng tải, vị trí nào KHÔNG được đứng?", "options": ["Dưới tải và trong bán kính quay", "Ngoài rào chắn", "Cạnh người xi nhan"], "answer": 0 },
+      { "q": "Ai được ra hiệu cho người vận hành cẩu?", "options": ["Bất kỳ ai", "Người xi nhan được chỉ định", "Người đứng gần nhất"], "answer": 1 }
+    ] },
+    { "id": "work-at-height", "label": "Làm việc trên cao", "perSite": false, "questions": [
+      { "q": "Dây an toàn toàn thân phải được móc vào đâu?", "options": ["Điểm neo chắc chắn", "Lan can tạm bất kỳ", "Không cần móc nếu cẩn thận"], "answer": 0 }
+    ] }
+  ]
+}

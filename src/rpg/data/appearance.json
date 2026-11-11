@@ -1,0 +1,61 @@
+{
+  "$comment": "appearanceOptions — tuỳ chọn ngoại hình. Mỗi nhóm có 'capability': renderer nào không hỗ trợ capability đó thì UI KHOÁ nhóm kèm thông báo (không có slider vô tác dụng). Thay thế avatar.json (v0.3).",
+  "bodyFrame": { "capability": "bodyFrame", "options": [
+    { "id": "male", "label": "Nam" },
+    { "id": "female", "label": "Nữ" }
+  ] },
+  "height": { "capability": "height", "min": 1.5, "max": 1.95, "step": 0.01, "def": 1.72, "unit": "m" },
+  "build": { "capability": "build", "options": [
+    { "id": "slim", "label": "Gầy", "girth": 0.9 },
+    { "id": "normal", "label": "Cân đối", "girth": 1.0 },
+    { "id": "sturdy", "label": "Vạm vỡ", "girth": 1.12 },
+    { "id": "heavy", "label": "Đậm người", "girth": 1.22 }
+  ] },
+  "shoulders": { "capability": "shoulders", "min": 0.9, "max": 1.15, "step": 0.01, "def": 1.0, "label": "Chiều rộng vai" },
+  "torso": { "capability": "torso", "min": 0.94, "max": 1.06, "step": 0.01, "def": 1.0, "label": "Tỷ lệ thân / chân" },
+  "faceShape": { "capability": "faceShape", "options": [
+    { "id": "oval", "label": "Trái xoan", "skull": [1, 1, 1], "jaw": [0.86, 0.8, 0.9] },
+    { "id": "round", "label": "Tròn", "skull": [1.06, 0.97, 1.02], "jaw": [0.98, 0.78, 0.96] },
+    { "id": "square", "label": "Vuông", "skull": [1.04, 1, 1], "jaw": [1.02, 0.84, 0.98] },
+    { "id": "long", "label": "Dài", "skull": [0.95, 1.06, 0.98], "jaw": [0.84, 0.92, 0.9] }
+  ] },
+  "eyes": { "capability": "eyes", "options": [
+    { "id": "normal", "label": "Bình thường", "size": 1, "squint": 1 },
+    { "id": "large", "label": "To", "size": 1.18, "squint": 1.1 },
+    { "id": "narrow", "label": "Hẹp", "size": 0.95, "squint": 0.6 },
+    { "id": "almond", "label": "Hạnh nhân", "size": 1.05, "squint": 0.8 }
+  ] },
+  "nose": { "capability": "nose", "options": [
+    { "id": "small", "label": "Nhỏ", "scale": [0.8, 0.85, 0.8] },
+    { "id": "straight", "label": "Thẳng", "scale": [1, 1, 1] },
+    { "id": "wide", "label": "Rộng", "scale": [1.35, 0.95, 1] },
+    { "id": "high", "label": "Cao", "scale": [0.95, 1.15, 1.25] }
+  ] },
+  "mouth": { "capability": "mouth", "options": [
+    { "id": "neutral", "label": "Bình thường" },
+    { "id": "smile", "label": "Tươi cười" },
+    { "id": "serious", "label": "Nghiêm túc" },
+    { "id": "full", "label": "Môi dày" }
+  ] },
+  "facialHair": { "capability": "facialHair", "options": [
+    { "id": "none", "label": "Không" },
+    { "id": "stubble", "label": "Râu lún phún" },
+    { "id": "mustache", "label": "Ria mép" },
+    { "id": "beard", "label": "Râu quai nón" }
+  ] },
+  "skin": { "capability": "skin", "options": ["#F3D2B3", "#E8B98F", "#D9A57B", "#C98E63", "#A86F48", "#7A4E33"] },
+  "hair": { "capability": "hair", "options": [
+    { "id": "short", "label": "Tóc ngắn" },
+    { "id": "buzz", "label": "Đầu đinh" },
+    { "id": "side", "label": "Rẽ ngôi" },
+    { "id": "curly", "label": "Tóc xoăn" },
+    { "id": "long", "label": "Dài buộc" },
+    { "id": "bun", "label": "Búi tóc" },
+    { "id": "bald", "label": "Cạo trọc" }
+  ] },
+  "hairColor": { "capability": "hairColor", "options": ["#1E1A17", "#3B2A20", "#6B4A2E", "#A07850", "#8A8A8A", "#C9C3B6"] },
+  "defaults": {
+    "male": { "bodyFrame": "male", "height": 1.72, "build": "normal", "shoulders": 1.0, "torso": 1.0, "faceShape": "oval", "eyes": "normal", "nose": "straight", "mouth": "neutral", "facialHair": "none", "skin": "#D9A57B", "hair": "short", "hairColor": "#1E1A17" },
+    "female": { "bodyFrame": "female", "height": 1.62, "build": "slim", "shoulders": 0.95, "torso": 1.0, "faceShape": "oval", "eyes": "almond", "nose": "small", "mouth": "smile", "facialHair": "none", "skin": "#E8B98F", "hair": "long", "hairColor": "#1E1A17" }
+  }
+}

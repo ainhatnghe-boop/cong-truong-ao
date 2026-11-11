@@ -1,0 +1,194 @@
+{
+  "$comment": "Mẫu quy trình cho DynamicWorkflowEngine. Mỗi bước: id, label, hint, kind (interact|goto|dialog|quiz|checklist|hold|ppe|permit|inspect|decision|report), target (office|drawing|warehouse|hseBoard|gate|workfront|object|foreman|checkpoint), after (bước tiên quyết — nhiều bước = song song), requires {ppe, permit, training}, onFail (bước làm lại), retry (bước được mở lại sau khi làm lại), tag (brief|main|report). Quy trình ĐƠN GIẢN HOÁ cho gameplay, KHÔNG phải biện pháp thi công được phê duyệt.",
+  "workMap": [
+    { "skill": "concrete", "workflow": "wf.work.concrete" },
+    { "skill": "steel", "workflow": "wf.work.steel" },
+    { "skill": "civil", "types": ["civil.road", "civil.pad"], "workflow": "wf.work.road" },
+    { "skill": "civil", "workflow": "wf.work.excavation" },
+    { "skill": "mep", "workflow": "wf.work.electrical" },
+    { "skill": "envelope", "workflow": "wf.work.envelope" }
+  ],
+  "templates": {
+    "wf.work.concrete": { "label": "Đổ bê tông", "effect": 0.08, "steps": [
+      { "id": "brief", "tag": "brief", "kind": "interact", "target": "office", "label": "Tiếp nhận phân công đổ bê tông", "hint": "Đến Văn phòng chỉ huy, nhấn E để nhận phiếu giao việc.", "xp": 5 },
+      { "id": "drawing", "kind": "dialog", "dialog": "drawing", "target": "drawing", "after": ["brief"], "label": "Xem bản vẽ cấu kiện", "hint": "Bảng bản vẽ cạnh văn phòng: xem kích thước, vị trí cấu kiện.", "xp": 5 },
+      { "id": "ppe", "kind": "ppe", "target": "warehouse", "after": ["brief"], "label": "Kiểm tra PPE & dụng cụ", "hint": "Tại kho vật tư, kiểm tra đủ PPE theo nghề (găng tay, kính…).", "xp": 5 },
+      { "id": "materials", "kind": "dialog", "dialog": "stock", "target": "warehouse", "after": ["brief"], "label": "Nhận vật tư: bê tông, phụ gia, đầm dùi", "hint": "Tại kho vật tư, đối chiếu vật tư cần cho hoạt động.", "xp": 5 },
+      { "id": "site", "kind": "goto", "target": "workfront", "after": ["drawing", "ppe", "materials"], "label": "Đến vị trí thi công", "hint": "Làm theo vạch dẫn đường tới hạng mục được giao.", "xp": 5 },
+      { "id": "precheck", "kind": "checklist", "target": "workfront", "after": ["site"], "label": "Kiểm tra trước khi đổ", "hint": "Chọn đúng các điều kiện cần có trước khi đổ bê tông.", "checklist": [
+        { "text": "Cốp pha, giàn giáo chắc chắn", "correct": true },
+        { "text": "Cốt thép đã được nghiệm thu", "correct": true },
+        { "text": "Đổ khi mưa to, không che chắn", "correct": false },
+        { "text": "Lối đi, lối thoát thông thoáng", "correct": true }
+      ], "xp": 10 },
+      { "id": "pour", "tag": "main", "kind": "hold", "seconds": 5, "target": "workfront", "after": ["precheck"], "label": "Đổ và đầm bê tông", "hint": "Giữ phím E tại vị trí thi công đến khi thanh tiến độ đầy.", "xp": 20 },
+      { "id": "qc", "kind": "inspect", "target": "workfront", "after": ["pour"], "onFail": "rework", "label": "Kiểm tra chất lượng bề mặt", "hint": "Quan sát kết quả kiểm tra và quyết định Đạt hoặc Yêu cầu sửa.", "defects": ["Rỗ mặt cục bộ ở góc cấu kiện", "Bề mặt chưa được bảo dưỡng ẩm"], "xp": 10 },
+      { "id": "rework", "kind": "hold", "seconds": 3, "target": "workfront", "retry": "qc", "optional": true, "label": "Xử lý khuyết tật & bảo dưỡng lại", "hint": "Giữ E để xử lý, sau đó kiểm tra lại.", "xp": 5 },
+      { "id": "report", "tag": "report", "kind": "report", "target": "office", "after": ["qc"], "label": "Báo cáo hoàn thành, cập nhật tiến độ", "hint": "Quay lại Văn phòng chỉ huy và nhấn E để báo cáo.", "xp": 10 }
+    ] },
+    "wf.work.steel": { "label": "Lắp dựng kết cấu thép", "effect": 0.08, "steps": [
+      { "id": "brief", "tag": "brief", "kind": "interact", "target": "office", "label": "Tiếp nhận phân công lắp dựng", "hint": "Nhấn E tại Văn phòng chỉ huy.", "xp": 5 },
+      { "id": "drawing", "kind": "dialog", "dialog": "drawing", "target": "drawing", "after": ["brief"], "label": "Xem bản vẽ lắp dựng", "hint": "Bảng bản vẽ cạnh văn phòng.", "xp": 5 },
+      { "id": "ppe", "kind": "ppe", "target": "warehouse", "after": ["brief"], "label": "Kiểm tra PPE (dây an toàn, găng, kính)", "hint": "Tại kho vật tư, nhận đủ PPE theo nghề.", "extraPPE": ["harness"], "xp": 5 },
+      { "id": "permit", "kind": "permit", "permit": "lifting", "target": "hseBoard", "after": ["brief"], "label": "Xin giấy phép nâng hạ (mô phỏng)", "hint": "Tại bảng HSE: chọn đúng điều kiện an toàn để được cấp PTW.", "xp": 10 },
+      { "id": "materials", "kind": "dialog", "dialog": "stock", "target": "warehouse", "after": ["brief"], "label": "Nhận cấu kiện, bu lông", "hint": "Tại kho vật tư.", "xp": 5 },
+      { "id": "rigging", "kind": "checklist", "target": "workfront", "after": ["drawing", "ppe", "permit", "materials"], "label": "Kiểm tra móc cáp & khu vực cẩu", "hint": "Chọn đúng điều kiện trước khi cẩu lắp.", "checklist": [
+        { "text": "Cáp, ma ní đã kiểm tra, đúng tải", "correct": true },
+        { "text": "Có người xi nhan và rào chắn dưới tải", "correct": true },
+        { "text": "Đứng dưới tải để chỉnh cấu kiện cho nhanh", "correct": false }
+      ], "xp": 10 },
+      { "id": "erect", "tag": "main", "kind": "hold", "seconds": 5, "target": "workfront", "after": ["rigging"], "requires": { "permit": "lifting" }, "label": "Lắp dựng & siết bu lông", "hint": "Giữ E tại vị trí lắp dựng. Cần PTW nâng hạ còn hiệu lực.", "xp": 20 },
+      { "id": "qc", "kind": "inspect", "target": "workfront", "after": ["erect"], "onFail": "rework", "label": "Kiểm tra độ thẳng đứng & lực siết", "hint": "Đánh giá kết quả kiểm tra.", "defects": ["Cột lệch trục vượt dung sai", "Bu lông chưa siết đủ lực"], "xp": 10 },
+      { "id": "rework", "kind": "hold", "seconds": 3, "target": "workfront", "retry": "qc", "optional": true, "label": "Căn chỉnh lại & siết bù", "hint": "Giữ E rồi kiểm tra lại.", "xp": 5 },
+      { "id": "report", "tag": "report", "kind": "report", "target": "office", "after": ["qc"], "label": "Báo cáo hoàn thành", "hint": "Nhấn E tại Văn phòng chỉ huy.", "xp": 10 }
+    ] },
+    "wf.work.road": { "label": "Thi công đường", "effect": 0.1, "steps": [
+      { "id": "brief", "tag": "brief", "kind": "interact", "target": "office", "label": "Tiếp nhận phân công thi công đường", "hint": "Nhấn E tại Văn phòng chỉ huy.", "xp": 5 },
+      { "id": "drawing", "kind": "dialog", "dialog": "drawing", "target": "drawing", "after": ["brief"], "label": "Xem mặt cắt ngang tuyến", "hint": "Bảng bản vẽ.", "xp": 5 },
+      { "id": "ppe", "kind": "ppe", "target": "warehouse", "after": ["brief"], "label": "Kiểm tra PPE", "hint": "Kho vật tư.", "xp": 5 },
+      { "id": "site", "kind": "goto", "target": "workfront", "after": ["drawing", "ppe"], "label": "Đến tuyến thi công", "hint": "Theo vạch dẫn đường.", "xp": 5 },
+      { "id": "compact", "kind": "checklist", "target": "workfront", "after": ["site"], "label": "Kiểm tra lớp móng trước khi thảm", "hint": "Chọn đúng điều kiện.", "checklist": [
+        { "text": "Lớp móng đã lu lèn đủ độ chặt", "correct": true },
+        { "text": "Bề mặt sạch, khô, đã tưới nhựa dính bám", "correct": true },
+        { "text": "Thảm nhựa khi nền còn đọng nước", "correct": false }
+      ], "xp": 10 },
+      { "id": "pave", "tag": "main", "kind": "hold", "seconds": 5, "target": "workfront", "after": ["compact"], "label": "Rải & lu bê tông nhựa", "hint": "Giữ E tại tuyến đường.", "xp": 20 },
+      { "id": "qc", "kind": "inspect", "target": "workfront", "after": ["pave"], "onFail": "rework", "label": "Kiểm tra độ phẳng & cao độ", "hint": "Đánh giá kết quả.", "defects": ["Độ phẳng vượt sai số cho phép", "Mối nối dọc bị hở"], "xp": 10 },
+      { "id": "rework", "kind": "hold", "seconds": 3, "target": "workfront", "retry": "qc", "optional": true, "label": "Xử lý mối nối, lu bù", "hint": "Giữ E rồi kiểm tra lại.", "xp": 5 },
+      { "id": "report", "tag": "report", "kind": "report", "target": "office", "after": ["qc"], "label": "Báo cáo hoàn thành", "hint": "Văn phòng chỉ huy.", "xp": 10 }
+    ] },
+    "wf.work.electrical": { "label": "Lắp đặt thiết bị điện", "effect": 0.08, "steps": [
+      { "id": "brief", "tag": "brief", "kind": "interact", "target": "office", "label": "Tiếp nhận phân công lắp điện", "hint": "Văn phòng chỉ huy.", "xp": 5 },
+      { "id": "drawing", "kind": "dialog", "dialog": "drawing", "target": "drawing", "after": ["brief"], "label": "Xem sơ đồ đấu nối", "hint": "Bảng bản vẽ.", "xp": 5 },
+      { "id": "ppe", "kind": "ppe", "target": "warehouse", "after": ["brief"], "label": "Kiểm tra găng cách điện, kính", "hint": "Kho vật tư.", "xp": 5 },
+      { "id": "permit", "kind": "permit", "permit": "electrical", "target": "hseBoard", "after": ["brief"], "label": "Xin giấy phép làm việc với điện – LOTO (mô phỏng)", "hint": "Bảng HSE.", "xp": 10 },
+      { "id": "install", "tag": "main", "kind": "hold", "seconds": 5, "target": "workfront", "after": ["drawing", "ppe", "permit"], "requires": { "permit": "electrical" }, "label": "Lắp đặt & đấu nối", "hint": "Giữ E tại thiết bị. Cần PTW điện còn hiệu lực.", "xp": 20 },
+      { "id": "qc", "kind": "inspect", "target": "workfront", "after": ["install"], "onFail": "rework", "label": "Đo cách điện, kiểm tra đấu nối", "hint": "Đánh giá kết quả đo.", "defects": ["Điện trở cách điện thấp hơn yêu cầu", "Đầu cốt chưa ép chặt"], "xp": 10 },
+      { "id": "rework", "kind": "hold", "seconds": 3, "target": "workfront", "retry": "qc", "optional": true, "label": "Xử lý & đo lại", "hint": "Giữ E rồi kiểm tra lại.", "xp": 5 },
+      { "id": "report", "tag": "report", "kind": "report", "target": "office", "after": ["qc"], "label": "Báo cáo, trả giấy phép", "hint": "Văn phòng chỉ huy.", "xp": 10 }
+    ] },
+    "wf.work.excavation": { "label": "Đào đất", "effect": 0.1, "steps": [
+      { "id": "brief", "tag": "brief", "kind": "interact", "target": "office", "label": "Tiếp nhận phân công đào đất", "hint": "Văn phòng chỉ huy.", "xp": 5 },
+      { "id": "drawing", "kind": "dialog", "dialog": "drawing", "target": "drawing", "after": ["brief"], "label": "Xem bản vẽ hố đào, cao độ", "hint": "Bảng bản vẽ.", "xp": 5 },
+      { "id": "ppe", "kind": "ppe", "target": "warehouse", "after": ["brief"], "label": "Kiểm tra PPE", "hint": "Kho vật tư.", "xp": 5 },
+      { "id": "permit", "kind": "permit", "permit": "excavation", "target": "hseBoard", "after": ["brief"], "label": "Xin giấy phép đào đất (mô phỏng)", "hint": "Bảng HSE.", "xp": 10 },
+      { "id": "scan", "kind": "checklist", "target": "workfront", "after": ["drawing", "ppe", "permit"], "label": "Kiểm tra trước khi đào", "hint": "Chọn đúng điều kiện.", "checklist": [
+        { "text": "Đã dò công trình ngầm", "correct": true },
+        { "text": "Đã rào chắn, có biển báo mép hố", "correct": true },
+        { "text": "Cho người đứng trong bán kính quay gầu", "correct": false }
+      ], "xp": 10 },
+      { "id": "dig", "tag": "main", "kind": "hold", "seconds": 5, "target": "workfront", "after": ["scan"], "requires": { "permit": "excavation" }, "label": "Đào đất theo cao độ thiết kế", "hint": "Giữ E. Cần PTW đào đất còn hiệu lực.", "xp": 20 },
+      { "id": "qc", "kind": "inspect", "target": "workfront", "after": ["dig"], "onFail": "rework", "label": "Kiểm tra cao độ đáy hố & mái dốc", "hint": "Đánh giá kết quả.", "defects": ["Đáy hố đào sâu quá cao độ thiết kế", "Mái dốc chưa đạt độ dốc an toàn"], "xp": 10 },
+      { "id": "rework", "kind": "hold", "seconds": 3, "target": "workfront", "retry": "qc", "optional": true, "label": "Sửa mái dốc, đầm đáy", "hint": "Giữ E rồi kiểm tra lại.", "xp": 5 },
+      { "id": "report", "tag": "report", "kind": "report", "target": "office", "after": ["qc"], "label": "Báo cáo hoàn thành", "hint": "Văn phòng chỉ huy.", "xp": 10 }
+    ] },
+    "wf.work.envelope": { "label": "Thi công bao che & hoàn thiện", "effect": 0.08, "steps": [
+      { "id": "brief", "tag": "brief", "kind": "interact", "target": "office", "label": "Tiếp nhận phân công", "hint": "Văn phòng chỉ huy.", "xp": 5 },
+      { "id": "drawing", "kind": "dialog", "dialog": "drawing", "target": "drawing", "after": ["brief"], "label": "Xem bản vẽ mặt đứng", "hint": "Bảng bản vẽ.", "xp": 5 },
+      { "id": "ppe", "kind": "ppe", "target": "warehouse", "after": ["brief"], "label": "Kiểm tra PPE", "hint": "Kho vật tư.", "xp": 5 },
+      { "id": "materials", "kind": "dialog", "dialog": "stock", "target": "warehouse", "after": ["brief"], "label": "Nhận vật tư", "hint": "Kho vật tư.", "xp": 5 },
+      { "id": "scaffold", "kind": "checklist", "target": "workfront", "after": ["drawing", "ppe", "materials"], "label": "Kiểm tra giàn giáo", "hint": "Chọn đúng điều kiện.", "checklist": [
+        { "text": "Giàn giáo có thẻ kiểm tra còn hạn", "correct": true },
+        { "text": "Sàn thao tác đủ ván, có lan can", "correct": true },
+        { "text": "Chất vật liệu quá tải lên sàn giáo", "correct": false }
+      ], "xp": 10 },
+      { "id": "install", "tag": "main", "kind": "hold", "seconds": 5, "target": "workfront", "after": ["scaffold"], "label": "Thi công bao che", "hint": "Giữ E tại hạng mục.", "xp": 20 },
+      { "id": "qc", "kind": "inspect", "target": "workfront", "after": ["install"], "onFail": "rework", "label": "Kiểm tra độ phẳng, mạch vữa / gioăng", "hint": "Đánh giá kết quả.", "defects": ["Mạch vữa không đều", "Gioăng kính chưa kín"], "xp": 10 },
+      { "id": "rework", "kind": "hold", "seconds": 3, "target": "workfront", "retry": "qc", "optional": true, "label": "Sửa chữa cục bộ", "hint": "Giữ E rồi kiểm tra lại.", "xp": 5 },
+      { "id": "report", "tag": "report", "kind": "report", "target": "office", "after": ["qc"], "label": "Báo cáo hoàn thành", "hint": "Văn phòng chỉ huy.", "xp": 10 }
+    ] },
+
+    "wf.field": { "label": "Giám sát hạng mục tại hiện trường", "effect": 0.05, "steps": [
+      { "id": "brief", "tag": "brief", "kind": "interact", "target": "office", "label": "Nhận nhiệm vụ giám sát", "hint": "Văn phòng chỉ huy.", "xp": 5 },
+      { "id": "drawing", "kind": "dialog", "dialog": "drawing", "target": "drawing", "after": ["brief"], "label": "Xem bản vẽ hạng mục", "hint": "Bảng bản vẽ cạnh văn phòng.", "xp": 5 },
+      { "id": "materials", "kind": "dialog", "dialog": "stock", "target": "warehouse", "after": ["brief"], "label": "Kiểm tra vật tư cho hoạt động hiện tại", "hint": "Kho vật tư.", "xp": 5 },
+      { "id": "site", "kind": "goto", "target": "workfront", "after": ["drawing", "materials"], "label": "Đến vị trí thi công", "hint": "Theo vạch dẫn đường.", "xp": 5 },
+      { "id": "crew", "kind": "dialog", "dialog": "crew", "target": "foreman", "after": ["site"], "label": "Kiểm tra tổ đội với tổ trưởng", "hint": "Nhấn E khi đứng gần tổ trưởng (NPC).", "xp": 5 },
+      { "id": "monitor", "tag": "main", "kind": "hold", "seconds": 4, "target": "workfront", "after": ["crew"], "label": "Theo dõi thi công", "hint": "Giữ E tại hạng mục để quan sát.", "xp": 15 },
+      { "id": "record", "kind": "quiz", "quizGen": "progress", "target": "workfront", "after": ["monitor"], "label": "Ghi nhận tiến độ hạng mục", "hint": "Chọn đúng % hoàn thành quan sát được.", "xp": 10 },
+      { "id": "report", "tag": "report", "kind": "report", "target": "office", "after": ["record"], "label": "Ghi nhật ký & báo cáo", "hint": "Văn phòng chỉ huy.", "xp": 10 }
+    ] },
+    "wf.mep": { "label": "Kiểm tra lắp đặt cơ điện", "effect": 0.05, "steps": [
+      { "id": "brief", "tag": "brief", "kind": "interact", "target": "office", "label": "Nhận nhiệm vụ kiểm tra MEP", "hint": "Văn phòng chỉ huy.", "xp": 5 },
+      { "id": "drawing", "kind": "dialog", "dialog": "drawing", "target": "drawing", "after": ["brief"], "label": "Xem bản vẽ phối hợp", "hint": "Bảng bản vẽ.", "xp": 5 },
+      { "id": "site", "kind": "goto", "target": "workfront", "after": ["drawing"], "label": "Đến vị trí lắp đặt", "hint": "Theo vạch dẫn đường.", "xp": 5 },
+      { "id": "check", "kind": "checklist", "target": "workfront", "after": ["site"], "label": "Kiểm tra phối hợp lắp đặt", "hint": "Chọn đúng các mục cần kiểm tra.", "checklist": [
+        { "text": "Khoảng cách an toàn giữa máng cáp và ống nóng", "correct": true },
+        { "text": "Giá đỡ đúng bước theo bản vẽ", "correct": true },
+        { "text": "Cắt kết cấu chịu lực để luồn ống", "correct": false }
+      ], "xp": 10 },
+      { "id": "monitor", "tag": "main", "kind": "hold", "seconds": 4, "target": "workfront", "after": ["check"], "label": "Theo dõi lắp đặt", "hint": "Giữ E tại hạng mục.", "xp": 15 },
+      { "id": "report", "tag": "report", "kind": "report", "target": "office", "after": ["monitor"], "label": "Báo cáo kết quả", "hint": "Văn phòng chỉ huy.", "xp": 10 }
+    ] },
+    "wf.manager": { "label": "Điều hành mũi thi công", "effect": 0.05, "steps": [
+      { "id": "brief", "tag": "brief", "kind": "interact", "target": "office", "label": "Họp giao ban đầu ngày", "hint": "Văn phòng chỉ huy.", "xp": 5 },
+      { "id": "board", "kind": "dialog", "dialog": "progress", "target": "drawing", "after": ["brief"], "label": "Xem bảng tiến độ dự án", "hint": "Bảng tiến độ cạnh văn phòng.", "xp": 5 },
+      { "id": "site", "kind": "goto", "target": "workfront", "after": ["board"], "label": "Kiểm tra mũi thi công chậm nhất", "hint": "Theo vạch dẫn đường.", "xp": 5 },
+      { "id": "talk", "kind": "dialog", "dialog": "crew", "target": "foreman", "after": ["site"], "label": "Trao đổi với tổ trưởng", "hint": "Nhấn E gần tổ trưởng (NPC).", "xp": 5 },
+      { "id": "decide", "tag": "main", "kind": "decision", "target": "workfront", "after": ["talk"], "label": "Ra quyết định điều hành", "hint": "Chọn phương án phù hợp.", "options": [
+        { "label": "Tăng cường thêm tổ đội cho mũi này", "next": "allocate" },
+        { "label": "Giữ nguyên, yêu cầu báo cáo hằng ngày", "skip": ["allocate"] }
+      ], "xp": 15 },
+      { "id": "allocate", "kind": "interact", "target": "warehouse", "optional": true, "label": "Điều chuyển vật tư & nhân lực", "hint": "Tại kho vật tư, nhấn E để điều chuyển.", "xp": 5 },
+      { "id": "report", "tag": "report", "kind": "report", "target": "office", "after": ["decide"], "label": "Chốt chỉ đạo, báo cáo", "hint": "Văn phòng chỉ huy.", "xp": 10 }
+    ] },
+    "wf.bim": { "label": "Đối chiếu mô hình với hiện trường", "effect": 0, "steps": [
+      { "id": "brief", "tag": "brief", "kind": "interact", "target": "office", "label": "Nhận yêu cầu đối chiếu mô hình", "hint": "Văn phòng chỉ huy.", "xp": 5 },
+      { "id": "model", "kind": "dialog", "dialog": "drawing", "target": "drawing", "after": ["brief"], "label": "Mở mô hình BIM của hạng mục", "hint": "Bảng bản vẽ / mô hình.", "xp": 5 },
+      { "id": "site", "kind": "goto", "target": "workfront", "after": ["model"], "label": "Đến hạng mục ngoài hiện trường", "hint": "Theo vạch dẫn đường.", "xp": 5 },
+      { "id": "compare", "tag": "main", "kind": "quiz", "quizGen": "dimension", "target": "object", "after": ["site"], "label": "Đối chiếu kích thước thực tế với mô hình", "hint": "Chọn đúng thông số trong mô hình.", "xp": 15 },
+      { "id": "report", "tag": "report", "kind": "report", "target": "office", "after": ["compare"], "label": "Cập nhật mô hình & báo cáo", "hint": "Văn phòng chỉ huy.", "xp": 10 }
+    ] },
+    "wf.planning": { "label": "Cập nhật tiến độ tuần", "effect": 0, "steps": [
+      { "id": "brief", "tag": "brief", "kind": "interact", "target": "office", "label": "Nhận tiến độ tổng thể", "hint": "Văn phòng chỉ huy.", "xp": 5 },
+      { "id": "week", "kind": "dialog", "dialog": "progress", "target": "drawing", "after": ["brief"], "label": "Kiểm tra kế hoạch tuần", "hint": "Bảng tiến độ.", "xp": 5 },
+      { "id": "qty", "kind": "dialog", "dialog": "quantity", "target": "object", "after": ["week"], "label": "Xem khối lượng hạng mục", "hint": "Đến gần hạng mục, nhấn E.", "xp": 5 },
+      { "id": "observe", "kind": "hold", "seconds": 3, "target": "workfront", "after": ["qty"], "label": "Quan sát hiện trường", "hint": "Giữ E tại hạng mục.", "xp": 5 },
+      { "id": "update", "tag": "main", "kind": "quiz", "quizGen": "progress", "target": "workfront", "after": ["observe"], "label": "Cập nhật % hoàn thành", "hint": "Chọn đúng % hoàn thành.", "xp": 15 },
+      { "id": "report", "tag": "report", "kind": "report", "target": "office", "after": ["update"], "label": "Báo cáo tiến độ tuần", "hint": "Văn phòng chỉ huy.", "xp": 10 }
+    ] },
+    "wf.qs": { "label": "Xác định khối lượng hoàn thành", "effect": 0, "steps": [
+      { "id": "brief", "tag": "brief", "kind": "interact", "target": "office", "label": "Nhận danh mục hạng mục cần đo", "hint": "Văn phòng chỉ huy.", "xp": 5 },
+      { "id": "view", "kind": "dialog", "dialog": "quantity", "target": "object", "after": ["brief"], "label": "Xem hạng mục & cấu kiện", "hint": "Đến gần hạng mục, nhấn E.", "xp": 5 },
+      { "id": "measure", "tag": "main", "kind": "quiz", "quizGen": "quantity", "target": "object", "after": ["view"], "label": "Xác định khối lượng mô phỏng", "hint": "Chọn đúng khối lượng của hoạt động.", "xp": 15 },
+      { "id": "done", "kind": "quiz", "quizGen": "progress", "target": "workfront", "after": ["measure"], "label": "Kiểm tra phần đã hoàn thành", "hint": "Chọn đúng % đã hoàn thành.", "xp": 10 },
+      { "id": "report", "tag": "report", "kind": "report", "target": "office", "after": ["done"], "label": "Lập bảng ghi nhận khối lượng", "hint": "Văn phòng chỉ huy.", "xp": 10 }
+    ] },
+    "wf.procurement": { "label": "Kiểm tra & đề xuất vật tư", "effect": 0, "steps": [
+      { "id": "brief", "tag": "brief", "kind": "interact", "target": "office", "label": "Nhận yêu cầu vật tư", "hint": "Văn phòng chỉ huy.", "xp": 5 },
+      { "id": "stock", "kind": "dialog", "dialog": "stock", "target": "warehouse", "after": ["brief"], "label": "Kiểm tra tồn kho", "hint": "Kho vật tư.", "xp": 5 },
+      { "id": "decide", "tag": "main", "kind": "decision", "target": "warehouse", "after": ["stock"], "label": "Đề xuất phương án cung ứng", "hint": "Chọn phương án.", "options": [
+        { "label": "Đặt mua bổ sung theo kế hoạch tuần" },
+        { "label": "Điều chuyển từ kho dự án khác" }
+      ], "xp": 15 },
+      { "id": "report", "tag": "report", "kind": "report", "target": "office", "after": ["decide"], "label": "Trình đề xuất mua", "hint": "Văn phòng chỉ huy.", "xp": 10 }
+    ] },
+    "wf.doccontrol": { "label": "Phát hành bản vẽ ra hiện trường", "effect": 0, "steps": [
+      { "id": "brief", "tag": "brief", "kind": "interact", "target": "office", "label": "Nhận bản vẽ mới phát hành", "hint": "Văn phòng chỉ huy.", "xp": 5 },
+      { "id": "check", "kind": "checklist", "target": "drawing", "after": ["brief"], "label": "Kiểm tra phiên bản bản vẽ", "hint": "Chọn đúng các việc cần làm.", "checklist": [
+        { "text": "Đóng dấu \"Phát hành thi công\" bản mới", "correct": true },
+        { "text": "Thu hồi, đóng dấu hết hiệu lực bản cũ", "correct": true },
+        { "text": "Để cả bản cũ và mới ngoài hiện trường", "correct": false }
+      ], "xp": 10 },
+      { "id": "site", "kind": "goto", "target": "workfront", "after": ["check"], "label": "Mang bản vẽ ra hiện trường", "hint": "Theo vạch dẫn đường.", "xp": 5 },
+      { "id": "hand", "tag": "main", "kind": "interact", "target": "foreman", "after": ["site"], "label": "Giao bản vẽ cho tổ trưởng", "hint": "Nhấn E gần tổ trưởng.", "xp": 15 },
+      { "id": "report", "tag": "report", "kind": "report", "target": "office", "after": ["hand"], "label": "Cập nhật sổ phát hành", "hint": "Văn phòng chỉ huy.", "xp": 10 }
+    ] },
+    "wf.qaqc": { "label": "Kiểm tra chất lượng hạng mục", "effect": 0, "steps": [
+      { "id": "brief", "tag": "brief", "kind": "interact", "target": "office", "label": "Nhận yêu cầu kiểm tra", "hint": "Văn phòng chỉ huy.", "xp": 5 },
+      { "id": "itp", "kind": "dialog", "dialog": "drawing", "target": "drawing", "after": ["brief"], "label": "Xem bản vẽ & kế hoạch kiểm tra", "hint": "Bảng bản vẽ.", "xp": 5 },
+      { "id": "site", "kind": "goto", "target": "workfront", "after": ["itp"], "label": "Đến hạng mục cần kiểm tra", "hint": "Theo vạch dẫn đường.", "xp": 5 },
+      { "id": "inspect", "tag": "main", "kind": "inspect", "target": "workfront", "after": ["site"], "onFail": "followup", "label": "Kiểm tra & kết luận", "hint": "Đánh giá kết quả, đạt hoặc yêu cầu sửa.", "defects": ["Kích thước cấu kiện sai lệch", "Thiếu hồ sơ vật liệu đầu vào"], "xp": 15 },
+      { "id": "followup", "kind": "dialog", "dialog": "crew", "target": "foreman", "retry": "inspect", "optional": true, "label": "Yêu cầu tổ trưởng khắc phục", "hint": "Nhấn E gần tổ trưởng, sau đó kiểm tra lại.", "xp": 5 },
+      { "id": "report", "tag": "report", "kind": "report", "target": "office", "after": ["inspect"], "label": "Lập biên bản kiểm tra", "hint": "Văn phòng chỉ huy.", "xp": 10 }
+    ] },
+    "wf.hse": { "label": "Tuần tra an toàn", "effect": 0, "steps": [
+      { "id": "brief", "tag": "brief", "kind": "interact", "target": "office", "label": "Nhận kế hoạch tuần tra", "hint": "Văn phòng chỉ huy.", "xp": 5 },
+      { "id": "patrol", "kind": "goto", "target": "checkpoint", "after": ["brief"], "label": "Tuần tra tới khu vực có rủi ro", "hint": "Đi tới điểm tuần tra đánh dấu trên bản đồ.", "xp": 10 },
+      { "id": "hazard", "tag": "main", "kind": "quiz", "quizGen": "hazard", "target": "checkpoint", "after": ["patrol"], "label": "Nhận diện mối nguy", "hint": "Chọn đúng loại mối nguy của khu vực.", "xp": 15 },
+      { "id": "ppecheck", "kind": "quiz", "target": "foreman", "after": ["patrol"], "label": "Kiểm tra PPE của tổ thợ", "hint": "Nhấn E gần tổ trưởng (NPC).", "quiz": { "q": "Một thợ đang cắt thép nhưng không đeo kính bảo hộ. Bạn xử lý thế nào?", "options": ["Bỏ qua vì việc nhanh", "Yêu cầu dừng việc, đeo kính rồi mới làm tiếp", "Ghi chú để cuối tháng nhắc"], "answer": 1 }, "xp": 10 },
+      { "id": "ptw", "kind": "dialog", "dialog": "permits", "target": "hseBoard", "after": ["hazard", "ppecheck"], "label": "Kiểm tra giấy phép làm việc đang hiệu lực", "hint": "Bảng HSE.", "xp": 5 },
+      { "id": "report", "tag": "report", "kind": "report", "target": "office", "after": ["ptw"], "label": "Xác nhận điều kiện an toàn & báo cáo", "hint": "Văn phòng chỉ huy.", "xp": 10 }
+    ] }
+  }
+}

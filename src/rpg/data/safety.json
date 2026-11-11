@@ -1,0 +1,39 @@
+{
+  "$comment": "Vùng an toàn ĐỘNG: sinh từ đối tượng trên công trường theo luật (rules) — không vẽ tay theo mặt bằng. Mức: safe < restricted < permit < danger < forbidden. roles: '*' | mã nhóm (A–E) | id nghề. when: always | unfinished (chỉ khi đối tượng chưa bàn giao). shape: circle (radius) | box (hộp bao + pad). Cơ chế học tập, không thay kiểm soát an toàn thực tế.",
+  "levels": [
+    { "id": "safe", "label": "Vùng an toàn", "color": "#16A34A", "rank": 0 },
+    { "id": "restricted", "label": "Vùng hạn chế tiếp cận", "color": "#F59E0B", "rank": 1 },
+    { "id": "permit", "label": "Vùng cần giấy phép", "color": "#EA580C", "rank": 2 },
+    { "id": "danger", "label": "Vùng nguy hiểm", "color": "#DC2626", "rank": 3 },
+    { "id": "forbidden", "label": "Vùng cấm vào", "color": "#7F1D1D", "rank": 4 }
+  ],
+  "kinds": {
+    "general": "Khu vực công trường",
+    "walkway": "Lối đi bộ an toàn",
+    "lifting": "Khu vực cẩu nâng",
+    "height": "Mép sàn trên cao",
+    "excavation": "Hố đào",
+    "electrical": "Khu vực thiết bị điện",
+    "hotwork": "Khu vực hàn cắt",
+    "confined": "Không gian hạn chế",
+    "traffic": "Khu vực xe cơ giới di chuyển",
+    "demolition": "Khu vực phá dỡ",
+    "falling": "Khu vực vật rơi",
+    "test": "Khu vực đang thử nghiệm / chạy thử"
+  },
+  "rules": [
+    { "match": { "type": "eq.towerCrane" }, "kind": "lifting", "level": "permit", "shape": "circle", "radius": 16, "risk": 4, "ppe": ["helmet", "boots", "vest"], "training": ["induction"], "permit": "lifting", "roles": ["A", "D", "operator", "foreman", "field-engineer", "civil-engineer", "fitter", "welder"], "when": "always" },
+    { "match": { "type": "eq.crawlerCrane" }, "kind": "lifting", "level": "permit", "shape": "circle", "radius": 14, "risk": 4, "ppe": ["helmet", "boots", "vest"], "training": ["induction"], "permit": "lifting", "roles": ["A", "D", "operator", "foreman", "field-engineer", "civil-engineer", "fitter", "welder", "mechanical-engineer"], "when": "always" },
+    { "match": { "category": "equipment", "types": ["eq.excavator", "eq.dozer", "eq.dumpTruck", "eq.mixer", "eq.pump", "eq.forklift", "eq.pileDriver"] }, "kind": "traffic", "level": "restricted", "shape": "circle", "radius": 9, "risk": 3, "ppe": ["helmet", "boots", "vest"], "training": ["induction"], "roles": ["*"], "when": "always" },
+    { "match": { "types": ["asm.building", "asm.steelShed", "asm.bridge", "structure.rack"] }, "kind": "falling", "level": "restricted", "shape": "box", "pad": 5, "risk": 3, "ppe": ["helmet", "boots", "vest", "glasses"], "training": ["induction"], "roles": ["*"], "when": "unfinished" },
+    { "match": { "category": "foundation" }, "kind": "excavation", "level": "danger", "shape": "box", "pad": 3, "risk": 4, "ppe": ["helmet", "boots", "vest"], "training": ["induction"], "permit": "excavation", "roles": ["A", "D", "civil-engineer", "foreman", "operator", "concrete-worker", "rebar-worker"], "when": "unfinished" },
+    { "match": { "types": ["civil.drain", "civil.manhole"] }, "kind": "excavation", "level": "danger", "shape": "box", "pad": 2, "risk": 4, "ppe": ["helmet", "boots", "vest"], "training": ["induction"], "permit": "excavation", "roles": ["A", "D", "civil-engineer", "foreman", "operator"], "when": "unfinished" },
+    { "match": { "types": ["process.mepUnit", "process.tray"] }, "kind": "electrical", "level": "permit", "shape": "box", "pad": 3, "risk": 4, "ppe": ["helmet", "boots", "vest", "insulated-gloves"], "training": ["induction"], "permit": "electrical", "roles": ["A", "D", "electrical-engineer", "mep-engineer", "electrician"], "when": "always" },
+    { "match": { "type": "process.tank" }, "kind": "confined", "level": "danger", "shape": "box", "pad": 2, "risk": 5, "ppe": ["helmet", "boots", "vest", "respirator"], "training": ["induction"], "permit": "confined", "roles": ["hse", "site-manager", "mechanical-engineer", "fitter", "welder"], "when": "always" },
+    { "match": { "types": ["process.pipe", "process.machineBase"] }, "kind": "hotwork", "level": "restricted", "shape": "box", "pad": 2, "risk": 3, "ppe": ["helmet", "boots", "vest", "glasses"], "training": ["induction"], "roles": ["*"], "when": "unfinished" }
+  ],
+  "siteZone": { "kind": "general", "level": "restricted", "risk": 2, "ppe": ["helmet", "boots", "vest"], "training": ["induction"], "roles": ["*"] },
+  "gateSafeRadius": 14,
+  "warnDistance": 8,
+  "blockDistance": 2
+}

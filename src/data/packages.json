@@ -1,0 +1,7 @@
+[
+  { "id": "PKG-01", "code": "P1", "name": "Kho chứa LNG 2×180.000 m³", "projectId": "PRJ-01", "contractorId": "CTR-03", "managerId": "WK-07", "contractType": "EPC", "value": 12500, "color": "#F59E0B" },
+  { "id": "PKG-02", "code": "P2", "name": "Nhà máy điện CCGT 1.500 MW", "projectId": "PRJ-01", "contractorId": "CTR-04", "managerId": "WK-12", "contractType": "EPC", "value": 28400, "color": "#E4572E" },
+  { "id": "PKG-03", "code": "P3", "name": "TBA 500kV & đường dây đấu nối", "projectId": "PRJ-01", "contractorId": "CTR-05", "managerId": "WK-18", "contractType": "EPC", "value": 3200, "color": "#16A34A" },
+  { "id": "PKG-04", "code": "P4", "name": "Cảng nhập LNG & công trình biển", "projectId": "PRJ-01", "contractorId": "CTR-06", "managerId": "WK-21", "contractType": "Xây lắp", "value": 4100, "color": "#7C3AED" },
+  { "id": "PKG-05", "code": "P5", "name": "Hạ tầng & công trình phụ trợ", "projectId": "PRJ-01", "contractorId": "CTR-07", "managerId": "WK-23", "contractType": "Xây lắp", "value": 1800, "color": "#C2410C" }
+]

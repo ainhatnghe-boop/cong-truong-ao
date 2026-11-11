@@ -1,0 +1,7 @@
+[
+  { "id": "PTW-001", "type": "hot-work", "title": "Hàn tôn bồn trong T-01, vành 6", "zoneId": "ZONE-01", "holderId": "WK-08", "approverId": "WK-05", "status": "active", "date": "2026-11-07", "validTo": "2026-11-07" },
+  { "id": "PTW-002", "type": "lifting", "title": "Cẩu lắp module HRSG số 3 (85 tấn)", "zoneId": "ZONE-04", "holderId": "WK-17", "approverId": "WK-05", "status": "requested", "date": "2026-11-07", "validTo": "2026-11-08" },
+  { "id": "PTW-003", "type": "height", "title": "Lắp tôn mái nhà tua-bin, trục 3–5", "zoneId": "ZONE-03", "holderId": "WK-13", "approverId": "WK-05", "status": "active", "date": "2026-11-07", "validTo": "2026-11-07" },
+  { "id": "PTW-004", "type": "confined", "title": "Kiểm tra bên trong bồn T-02", "zoneId": "ZONE-02", "holderId": "WK-09", "approverId": "WK-06", "status": "requested", "date": "2026-11-07", "validTo": "2026-11-07" },
+  { "id": "PTW-005", "type": "electrical", "title": "Thí nghiệm cách điện MBA AT1", "zoneId": "ZONE-05", "holderId": "WK-20", "approverId": "WK-05", "status": "closed", "date": "2026-11-05", "validTo": "2026-11-05" }
+]

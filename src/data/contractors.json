@@ -1,0 +1,9 @@
+[
+  { "id": "CTR-01", "code": "PMU", "name": "Ban QLDA Hải Đăng (Chủ đầu tư)", "kind": "owner", "color": "#1F5EFF", "helmet": "#F8FAFC", "manpower": 85 },
+  { "id": "CTR-02", "code": "TVGS", "name": "Tư vấn giám sát Minh Tâm (demo)", "kind": "consultant", "color": "#0EA5E9", "helmet": "#3B82F6", "manpower": 60 },
+  { "id": "CTR-03", "code": "SBE", "name": "Liên danh EPC Sao Biển (demo)", "kind": "epc", "color": "#F59E0B", "helmet": "#FACC15", "manpower": 1450 },
+  { "id": "CTR-04", "code": "PNP", "name": "Tổng thầu Nhà máy điện Phương Nam (demo)", "kind": "epc", "color": "#E4572E", "helmet": "#EF4444", "manpower": 2100 },
+  { "id": "CTR-05", "code": "KSE", "name": "Điện lực Kim Sơn (demo)", "kind": "contractor", "color": "#16A34A", "helmet": "#22C55E", "manpower": 380 },
+  { "id": "CTR-06", "code": "HAM", "name": "Công trình biển Hải Âu (demo)", "kind": "contractor", "color": "#7C3AED", "helmet": "#A78BFA", "manpower": 520 },
+  { "id": "CTR-07", "code": "TDI", "name": "Hạ tầng Thành Đạt (demo)", "kind": "contractor", "color": "#C2410C", "helmet": "#FB923C", "manpower": 310 }
+]

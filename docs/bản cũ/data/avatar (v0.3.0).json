@@ -1,0 +1,49 @@
+{
+  "$comment": "Tuỳ chọn ngoại hình nhân vật. Thêm lựa chọn = thêm mục; AvatarCustomizationSystem tự kiểm tra hợp lệ.",
+  "body": [
+    { "id": "slim", "label": "Gầy", "width": 0.9 },
+    { "id": "normal", "label": "Cân đối", "width": 1.0 },
+    { "id": "sturdy", "label": "Vạm vỡ", "width": 1.14 }
+  ],
+  "height": { "min": 1.55, "max": 1.95, "def": 1.72 },
+  "skin": ["#F3D2B3", "#E8B98F", "#D9A57B", "#C98E63", "#A86F48", "#7A4E33"],
+  "face": [
+    { "id": "calm", "label": "Điềm tĩnh" },
+    { "id": "smile", "label": "Tươi cười" },
+    { "id": "beard", "label": "Râu quai nón" },
+    { "id": "mustache", "label": "Ria mép" },
+    { "id": "glasses", "label": "Đeo kính cận" }
+  ],
+  "hair": [
+    { "id": "short", "label": "Tóc ngắn" },
+    { "id": "buzz", "label": "Đầu đinh" },
+    { "id": "side", "label": "Rẽ ngôi" },
+    { "id": "long", "label": "Tóc dài buộc" },
+    { "id": "bun", "label": "Búi tóc" }
+  ],
+  "hairColor": ["#1E1A17", "#3B2A20", "#6B4A2E", "#A07850", "#8A8A8A"],
+  "outfit": [
+    { "id": "workwear", "label": "Đồ bảo hộ lao động", "top": "#2F4A73", "bottom": "#2B3445" },
+    { "id": "coverall", "label": "Áo liền quần", "top": "#E4572E", "bottom": "#E4572E" },
+    { "id": "engineer", "label": "Sơ mi kỹ sư", "top": "#EEF2F7", "bottom": "#39404D" },
+    { "id": "polo", "label": "Áo polo công ty", "top": "#1F5EFF", "bottom": "#39404D" },
+    { "id": "khaki", "label": "Kaki công trường", "top": "#8C7A55", "bottom": "#5A4E39" }
+  ],
+  "helmet": [
+    { "id": "white", "label": "Trắng (quản lý / kỹ sư)", "color": "#F5F7FA" },
+    { "id": "yellow", "label": "Vàng (công nhân)", "color": "#FACC15" },
+    { "id": "blue", "label": "Xanh (kỹ thuật / tư vấn)", "color": "#2563EB" },
+    { "id": "green", "label": "Xanh lá (an toàn)", "color": "#16A34A" },
+    { "id": "orange", "label": "Cam (khách / thực tập)", "color": "#F97316" }
+  ],
+  "boots": [
+    { "id": "black", "label": "Giày mũi thép đen", "color": "#1F2328" },
+    { "id": "brown", "label": "Giày mũi thép nâu", "color": "#5B3A24" },
+    { "id": "rubber", "label": "Ủng cao su", "color": "#2E4A2E" }
+  ],
+  "vest": [
+    { "id": "orange", "label": "Phản quang cam", "color": "#FF7A1A" },
+    { "id": "lime", "label": "Phản quang vàng chanh", "color": "#C6F432" }
+  ],
+  "defaults": { "body": "normal", "height": 1.72, "skin": "#D9A57B", "face": "calm", "hair": "short", "hairColor": "#1E1A17", "outfit": "workwear", "helmet": "white", "boots": "black", "vest": "orange" }
+}

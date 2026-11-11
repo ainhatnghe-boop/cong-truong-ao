@@ -1,0 +1,773 @@
+/* ============================================================
+   Công trường ảo · Nhập vai — dùng token ở :root (src/styles.css). UI gọn, không che quá nhiều không gian 3D.
+   ============================================================ */
+.rp-screen {
+  height: 100%;
+  overflow: auto;
+  padding: 16px 20px 24px;
+  background: radial-gradient(circle at 20% 10%, color-mix(in srgb, var(--accent) 16%, var(--bg)), var(--bg) 55%);
+}
+.rp-screen__head h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.rp-screen__head p {
+  margin: 4px 0 12px;
+}
+.rp-screen .input {
+  min-width: 0;
+  width: 100%;
+}
+.rp-create {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(320px, 440px);
+  gap: 16px;
+}
+.rp-create__form {
+  padding: 14px 16px;
+  max-height: calc(100vh - 120px);
+  overflow: auto;
+}
+.rp-preview {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: var(--border);
+  box-shadow: var(--shadow);
+  min-height: 300px;
+}
+.rp-preview__bar {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  display: flex;
+  gap: 4px;
+}
+.rp-preview__hint {
+  position: absolute;
+  right: 10px;
+  bottom: 6px;
+  margin: 0;
+  font-size: 11px;
+  color: #334155;
+}
+.rp-editor h4,
+.rp-list h4,
+.rp-map h4 {
+  margin: 12px 0 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.rp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.rp-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.rp-swatch {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  cursor: pointer;
+}
+.rp-swatch.is-active {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 2px var(--primary);
+}
+.rp-two {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(320px, 1.3fr);
+  gap: 16px;
+  align-items: start;
+}
+.rp-list {
+  padding: 8px 14px 14px;
+  max-height: calc(100vh - 170px);
+  overflow: auto;
+}
+.rp-pad {
+  padding: 14px 18px;
+}
+.rp-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.rp-chip {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface-solid);
+  font: 600 13px var(--font);
+  color: var(--ink);
+  cursor: pointer;
+  min-height: 32px;
+  text-align: left;
+}
+.rp-chip:hover {
+  border-color: var(--ink);
+}
+.rp-chip.is-active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-ink);
+}
+.rp-chip.is-locked {
+  opacity: 0.6;
+}
+.rp-role-detail h2 {
+  margin: 0;
+}
+.warn-text {
+  color: var(--warn);
+}
+.ok-text {
+  color: var(--ok);
+}
+.rp-site {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  padding: 10px 12px;
+  margin: 4px 0;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--surface-solid);
+  text-align: left;
+  cursor: pointer;
+  font: 13px var(--font);
+  color: var(--ink);
+}
+.rp-site small {
+  color: var(--muted);
+}
+.rp-site.is-active {
+  border-color: var(--primary);
+  box-shadow: inset 3px 0 0 var(--primary);
+}
+.rp-msg {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: var(--r);
+  background: var(--surface-2);
+}
+.rp-org {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+.rp-org ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.rp-org li {
+  padding: 3px 0;
+  border-bottom: 1px dashed var(--line);
+}
+
+/* ---------- thế giới ---------- */
+.rp-world {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+.rp-stage {
+  position: absolute;
+  inset: 0;
+}
+.rp-status {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  max-width: calc(100% - 250px);
+  z-index: 20;
+}
+.rp-status__name {
+  font-size: 13px;
+  white-space: nowrap;
+}
+.rp-status__site {
+  max-width: 260px;
+}
+.rp-xpbar {
+  display: inline-block;
+  width: 60px;
+  height: 5px;
+  margin-left: 6px;
+  border-radius: 9px;
+  background: var(--line);
+  vertical-align: middle;
+  overflow: hidden;
+}
+.rp-xpbar i {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+.rp-obj {
+  position: absolute;
+  top: 58px;
+  left: 10px;
+  width: min(380px, calc(100% - 20px));
+  padding: 10px 12px;
+  z-index: 20;
+}
+.rp-obj header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--primary);
+}
+.rp-obj header button {
+  margin-left: auto;
+}
+.rp-obj h3 {
+  margin: 4px 0;
+  font-size: 16px;
+}
+.rp-obj p {
+  margin: 4px 0;
+}
+.rp-dist {
+  color: #0891b2;
+  font-weight: 700;
+}
+.rp-minimap {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0;
+  border: var(--border);
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  background: #c9c2ae;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  z-index: 20;
+}
+.rp-minimap canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.rp-minimap span {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font: 700 11px var(--font);
+  background: rgba(20, 32, 58, 0.75);
+  color: #fff;
+  padding: 1px 8px;
+  border-radius: 99px;
+}
+/* Dải giai đoạn thi công / nhiệm vụ — HUD tối giản: tên rõ ràng + trạng thái màu, thay cho đánh số 1,2,3… */
+.rp-phase {
+  position: absolute;
+  top: 222px;
+  right: 10px;
+  width: 220px;
+  max-width: calc(100% - 20px);
+  padding: 8px 10px;
+  z-index: 19;
+}
+.rp-phase header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.rp-phase header small:first-child {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rp-phase header button {
+  margin-left: 0;
+}
+.rp-phase__list {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  max-height: 220px;
+  overflow-y: auto;
+}
+.rp-phase__list li button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 3px 4px;
+  border: 0;
+  background: transparent;
+  font: 12px var(--font);
+  text-align: left;
+  color: var(--ink-2);
+  cursor: pointer;
+  border-radius: var(--r-sm);
+}
+.rp-phase__list li button:hover {
+  background: var(--surface-2);
+}
+.rp-phase__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rp-phase__dot {
+  flex: none;
+  width: 14px;
+  text-align: center;
+  font-weight: 900;
+}
+.rp-phase__list li.is-done .rp-phase__dot {
+  color: var(--ok);
+}
+.rp-phase__list li.is-done button {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--line);
+}
+.rp-phase__list li.is-current .rp-phase__dot {
+  color: var(--primary);
+  animation: rp-pulse 1.4s ease-in-out infinite;
+}
+.rp-phase__list li.is-current button {
+  color: var(--ink);
+  font-weight: 700;
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+}
+.rp-phase__list li.is-failed .rp-phase__dot {
+  color: var(--bad);
+}
+.rp-phase__list li.is-locked .rp-phase__dot {
+  color: var(--line);
+}
+.rp-phase__list li.is-locked button {
+  color: var(--muted);
+}
+@keyframes rp-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+@media (max-width: 700px) {
+  .rp-phase {
+    display: none;
+  }
+}
+
+.rp-warn {
+  position: absolute;
+  top: 58px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: min(560px, 60vw);
+  padding: 8px 14px;
+  border-radius: var(--r);
+  font-size: 13px;
+  z-index: 25;
+  box-shadow: var(--shadow);
+  background: var(--surface-solid);
+  border: 2px solid var(--line);
+}
+.rp-warn--1 {
+  border-color: #0ea5e9;
+}
+.rp-warn--2 {
+  border-color: var(--warn);
+  background: #fff7e6;
+  color: #7c4a03;
+}
+.rp-warn--3 {
+  border-color: var(--bad);
+  background: #fde8e8;
+  color: #7f1d1d;
+  animation: pop 0.25s ease-out;
+}
+.rp-prompt {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 20;
+  pointer-events: none;
+}
+.rp-prompt__box {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(20, 32, 58, 0.85);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+.rp-prompt__box .muted {
+  color: #b6bfd6;
+}
+kbd {
+  display: inline-block;
+  min-width: 22px;
+  padding: 1px 6px;
+  border-radius: 5px;
+  background: #fff;
+  color: #14203a;
+  font: 800 12px var(--mono);
+  text-align: center;
+  box-shadow: 0 2px 0 #94a3b8;
+}
+.rp-hold {
+  width: 240px;
+  height: 10px;
+  border-radius: 99px;
+  background: rgba(20, 32, 58, 0.5);
+  overflow: hidden;
+}
+.rp-hold i {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+.rp-notices {
+  position: absolute;
+  right: 10px;
+  top: 222px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: min(340px, 40vw);
+  z-index: 22;
+}
+.rp-notice {
+  padding: 7px 12px;
+  border-radius: var(--r);
+  border: 2px solid var(--line);
+  background: var(--surface-solid);
+  font-size: 13px;
+  box-shadow: var(--shadow);
+  animation: pop 0.2s ease-out;
+}
+.rp-guide {
+  position: absolute;
+  left: 10px;
+  bottom: 40px;
+  width: min(420px, calc(100% - 20px));
+  padding: 10px 14px;
+  z-index: 21;
+  border-color: #2563eb;
+}
+.rp-guide header {
+  font-weight: 800;
+  font-size: 13px;
+  color: #2563eb;
+}
+.rp-guide p {
+  margin: 5px 0;
+  font-size: 13px;
+}
+.rp-npc-badge {
+  display: inline-block;
+  padding: 0 6px;
+  border-radius: 4px;
+  background: #64748b;
+  color: #fff;
+  font: 800 10px var(--font);
+  letter-spacing: 0.05em;
+  vertical-align: 2px;
+}
+.rp-keys {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  margin: 0;
+  font-size: 11px;
+  color: #fff;
+  background: rgba(20, 32, 58, 0.55);
+  padding: 3px 10px;
+  border-radius: 99px;
+  pointer-events: none;
+  z-index: 15;
+}
+.rp-cam-badge {
+  position: absolute;
+  bottom: 40px;
+  right: 10px;
+  padding: 6px 12px;
+  border-radius: 99px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  z-index: 20;
+}
+.rp-mouse-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 12px;
+  border-radius: 99px;
+  background: rgba(11, 23, 38, 0.72);
+  color: #f4f7fa;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 19;
+  white-space: nowrap;
+}
+.rp-mouse-hint.is-locked {
+  background: rgba(22, 139, 255, 0.8);
+}
+@media (max-width: 700px) {
+  .rp-mouse-hint {
+    display: none;
+  }
+}
+.rp-sign {
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: rgba(20, 32, 58, 0.85);
+  color: #fff;
+  font: 700 12px var(--font);
+  white-space: nowrap;
+}
+.rp-npc-tag {
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: rgba(248, 250, 252, 0.92);
+  border: 1px solid #94a3b8;
+  font: 600 11px var(--font);
+  color: #14203a;
+  white-space: nowrap;
+}
+.rp-npc-tag b {
+  color: #64748b;
+  margin-right: 2px;
+}
+.rp-npc-tag.is-guide {
+  background: #2563eb;
+  color: #fff;
+  border-color: #1e40af;
+}
+.rp-npc-tag.is-guide b {
+  color: #bfdbfe;
+}
+
+/* ---------- hộp thoại ---------- */
+.rp-dialog {
+  max-width: 620px;
+  width: 100%;
+}
+.rp-dialog.is-wide {
+  max-width: 980px;
+}
+.rp-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 8px 0;
+}
+.rp-option {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  cursor: pointer;
+  font-size: 14px;
+}
+.rp-option.is-active {
+  border-color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+}
+.rp-feedback {
+  margin-top: 8px;
+}
+.rp-q {
+  padding: 6px 0 10px;
+  border-bottom: 1px dashed var(--line);
+}
+.rp-ppe {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0;
+}
+.rp-ppe li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+}
+.rp-ppe li button {
+  margin-left: auto;
+}
+.rp-ppe li.is-missing {
+  color: var(--bad);
+  font-weight: 700;
+}
+.rp-zone-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+}
+.rp-zone-list li {
+  padding: 5px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.rp-zone-list i,
+.rp-legend i {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  vertical-align: -1px;
+}
+.rp-legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+}
+.rp-legend li {
+  padding: 2px 0;
+}
+.rp-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.rp-steps li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line);
+}
+.rp-steps li > span {
+  width: 18px;
+  text-align: center;
+  font-weight: 800;
+}
+.rp-steps li > div {
+  flex: 1;
+}
+.rp-steps li.is-done {
+  color: var(--ok);
+}
+.rp-steps li.is-ready {
+  font-weight: 600;
+}
+.rp-steps li.is-locked,
+.rp-steps li.is-skipped {
+  color: var(--muted);
+}
+.rp-steps li.is-failed {
+  color: var(--bad);
+}
+.rp-map {
+  max-width: 1180px;
+  width: 100%;
+}
+.rp-map__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 14px;
+}
+.rp-map__body canvas {
+  width: 100%;
+  height: auto;
+  border-radius: var(--r);
+  cursor: crosshair;
+}
+.rp-map__body aside {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.rp-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 420px;
+  margin: 0 auto;
+}
+.rp-wardrobe {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(260px, 1fr);
+  gap: 16px;
+}
+.rp-wardrobe .input,
+.rp-settings .input {
+  min-width: 0;
+  width: 100%;
+}
+.rp-settings {
+  max-width: 520px;
+}
+.rp-dialog-wrap {
+  z-index: 60;
+}
+
+@media (max-width: 900px) {
+  .rp-create,
+  .rp-two,
+  .rp-wardrobe,
+  .rp-map__body {
+    grid-template-columns: 1fr;
+  }
+  .rp-minimap {
+    width: 130px;
+    height: 130px;
+  }
+  .rp-notices {
+    top: 150px;
+  }
+  .rp-keys {
+    display: none;
+  }
+  .rp-status {
+    max-width: calc(100% - 160px);
+  }
+}
+
+.rp-loading {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font: 700 18px var(--font);
+  color: var(--ink-2);
+  background: var(--bg);
+}

@@ -1,0 +1,8 @@
+[
+  { "id": "HSE-001", "type": "near-miss", "title": "Vật rơi từ sàn công tác cao 18 m, không có người bên dưới", "zoneId": "ZONE-01", "reporterId": "WK-06", "date": "2026-11-03", "severity": "medium", "status": "open", "action": "Bổ sung lưới chắn vật rơi, buộc dây cho dụng cụ cầm tay" },
+  { "id": "HSE-002", "type": "unsafe-act", "title": "Công nhân không móc dây an toàn khi lắp giằng mái", "zoneId": "ZONE-03", "reporterId": "WK-05", "date": "2026-11-05", "severity": "high", "status": "open", "action": "Dừng việc, huấn luyện lại, kiểm tra điểm neo" },
+  { "id": "HSE-003", "type": "good-practice", "title": "Tổ hàn bồn T-02 duy trì 5S, chai khí cố định đúng quy định", "zoneId": "ZONE-02", "reporterId": "WK-06", "date": "2026-11-04", "severity": "low", "status": "closed", "action": "Tuyên dương trong giao ban an toàn tuần" },
+  { "id": "HSE-004", "type": "unsafe-condition", "title": "Mép hố móng pipe rack chưa có rào chắn", "zoneId": "ZONE-07", "reporterId": "WK-05", "date": "2026-11-06", "severity": "high", "status": "open", "action": "Lắp rào cứng và đèn cảnh báo trong ca" },
+  { "id": "HSE-005", "type": "near-miss", "title": "Xe bồn lùi không có người xi nhan tại trạm trộn", "zoneId": "ZONE-13", "reporterId": "WK-05", "date": "2026-10-28", "severity": "medium", "status": "closed", "action": "Bố trí người xi nhan cố định, lắp còi lùi" },
+  { "id": "HSE-006", "type": "good-practice", "title": "Diễn tập ứng cứu sự cố tràn dầu tại cầu cảng", "zoneId": "ZONE-06", "reporterId": "WK-05", "date": "2026-10-20", "severity": "low", "status": "closed", "action": "Lưu hồ sơ diễn tập quý IV" }
+]

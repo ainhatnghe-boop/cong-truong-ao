@@ -1,0 +1,25 @@
+{
+  "$comment": "Nhiệm vụ dạng chuỗi bước. Mỗi bước: title, desc, guide (khoá lời thoại hướng dẫn), target (đánh dấu bản đồ), complete (điều kiện sự kiện), xp. Phần thưởng chỉ nhận một lần (sổ claimed).",
+  "onboarding": {
+    "id": "M-ONBOARD",
+    "title": "NGÀY ĐẦU TIÊN TẠI CÔNG TRƯỜNG",
+    "steps": [
+      { "id": "s01", "title": "Tạo nhân vật", "desc": "Đặt tên và chọn ngoại hình, trang phục bảo hộ.", "complete": { "event": "character-created" }, "xp": 10 },
+      { "id": "s02", "title": "Chọn vị trí công việc", "desc": "Chọn nghề bạn muốn đảm nhận.", "complete": { "event": "role-chosen" }, "xp": 10 },
+      { "id": "s03", "title": "Chọn dự án", "desc": "Chọn công trường và đăng ký vị trí còn trống.", "complete": { "event": "site-joined" }, "xp": 10 },
+      { "id": "s04", "title": "Có mặt tại cổng công trường", "desc": "Bạn xuất hiện ở khu vực cổng.", "complete": { "event": "spawned" }, "xp": 5 },
+      { "id": "s05", "title": "Gặp AI hướng dẫn", "desc": "Đến gần trợ lý hướng dẫn tại cổng và nhấn E để trao đổi.", "guide": "welcome", "target": "guide", "complete": { "event": "interact", "target": "guide" }, "xp": 10 },
+      { "id": "s06", "title": "Kiểm tra trang bị PPE", "desc": "Tại ki-ốt cổng, kiểm tra đủ PPE bắt buộc của công trường và theo nghề.", "guide": "ppe", "target": "gate", "complete": { "event": "ppe-ok" }, "xp": 15 },
+      { "id": "s07", "title": "Huấn luyện an toàn đầu vào", "desc": "Trả lời đúng các câu hỏi an toàn với trợ lý hướng dẫn.", "guide": "safety", "target": "guide", "complete": { "event": "training", "id": "induction" }, "xp": 20 },
+      { "id": "s08", "title": "Xem bản đồ công trường", "desc": "Nhấn phím M để mở bản đồ, xem các vùng được phép và vùng nguy hiểm.", "guide": "map", "complete": { "event": "map-opened" }, "xp": 5 },
+      { "id": "s09", "title": "Đến văn phòng chỉ huy", "desc": "Đi theo vạch dẫn đường tới Văn phòng chỉ huy.", "guide": "office", "target": "office", "complete": { "event": "reach", "target": "office" }, "xp": 10 },
+      { "id": "s10", "title": "Nhận nhiệm vụ đầu tiên", "desc": "Nhấn E tại văn phòng để nhận nhiệm vụ theo nghề.", "guide": "first-task", "target": "office", "complete": { "event": "workflow-step", "tag": "brief" }, "xp": 10 },
+      { "id": "s11", "title": "Đến khu vực được phép", "desc": "Làm các bước chuẩn bị của quy trình rồi đến hạng mục được giao.", "guide": "workfront", "target": "workfront", "complete": { "event": "reach", "target": "workfront" }, "xp": 10 },
+      { "id": "s12", "title": "Quan sát hạng mục thi công", "desc": "Đến gần hạng mục, nhấn E để xem tiến độ.", "guide": "observe", "target": "object", "complete": { "event": "interact", "target": "object" }, "xp": 10 },
+      { "id": "s13", "title": "Hoàn thành công việc theo vai trò", "desc": "Thực hiện bước chính của quy trình được giao.", "guide": "do-work", "target": "workflow", "complete": { "event": "workflow-step", "tag": "main" }, "xp": 30 },
+      { "id": "s14", "title": "Báo cáo kết quả", "desc": "Hoàn tất các bước còn lại và báo cáo tại Văn phòng chỉ huy.", "guide": "report", "target": "workflow", "complete": { "event": "workflow-done" }, "xp": 20 },
+      { "id": "s15", "title": "Nhận XP và mở khoá nhiệm vụ tiếp theo", "desc": "Hoàn thành ngày đầu tiên! Nhận nhiệm vụ mới ở văn phòng bất cứ lúc nào.", "guide": "done", "complete": { "event": "auto" }, "xp": 50 }
+    ]
+  },
+  "repeatable": { "id": "M-ROLE", "title": "Nhiệm vụ theo nghề", "xpBonus": 30 }
+}

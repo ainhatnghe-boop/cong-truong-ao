@@ -1,0 +1,50 @@
+{
+  "$comment": "Lời thoại & mẫu câu cho mô phỏng. Không phải bảng id. Quy tắc: docs/01 RULE AGENTS.md mục B3.",
+  "byWorker": {
+    "WK-01": ["Giao ban 7h30: các gói báo cáo SPI tuần này nhé.", "Mốc đóng điện TBA không được trượt.", "Ưu tiên an toàn trước, tiến độ sau."],
+    "WK-02": ["Đường găng đang đi qua mái vòm T-01.", "Em vừa cập nhật tiến độ tuần lên P6.", "SPI gói P2 đang 0,94, cần bù 2 tuần."],
+    "WK-03": ["Nghiệm thu cốt thép sàn tầng 6 lúc 14h.", "Hồ sơ vật liệu đầu vào còn thiếu CO/CQ.", "Chưa đạt thì chưa ký biên bản."],
+    "WK-04": ["Đường hàn số 14 phải chụp RT lại.", "ITP bồn trong đã cập nhật bản C.", "Kiểm tra chứng chỉ thợ hàn 6G giúp chị."],
+    "WK-05": ["Đi trên cao phải móc dây an toàn 100%.", "PTW cẩu module HRSG chờ JSA bản ký.", "Hôm nay gió cấp 5, hạn chế cẩu lắp."],
+    "WK-06": ["Khu bồn T-02 đo khí trước khi vào bồn.", "Chai khí phải có xích giữ nhé anh.", "Tổ hàn T-02 làm 5S rất tốt!"],
+    "WK-07": ["Vành 6 bồn trong T-01 xong trong tuần.", "Chuẩn bị quạt nâng mái vòm T-01.", "Cần thêm 20 thợ hàn cho bồn T-02."],
+    "WK-08": ["Mối hàn này em xử lý lại ngay.", "Hàn thép 9% Ni phải giữ nhiệt độ lớp.", "Xin thêm que hàn ENiCrMo-6."],
+    "WK-09": ["Bồn T-02 lên vành 2 rồi anh ơi.", "Chờ PTW không gian hạn chế để vào bồn."],
+    "WK-10": ["Gió 11 m/s, tạm dừng nâng tấm tôn.", "Cẩu 750 tấn đã kiểm tra đầu ca."],
+    "WK-11": ["Khung pipe rack đoạn 6 đã căn chỉnh xong.", "Cần rào chắn hố móng trước khi đào tiếp."],
+    "WK-12": ["Kết cấu thép nhà tua-bin đạt 80%.", "Bệ máy GT-1 đã bàn giao cho tổ lắp máy."],
+    "WK-13": ["Tôn mái trục 3–5 lợp xong chiều nay.", "Bu lông cường độ cao đã siết đủ lực."],
+    "WK-14": ["Module HRSG số 3 về công trường sáng nay.", "Mối hàn ống góp đạt PT 100%."],
+    "WK-15": ["Đổ bê tông sàn tầng 6 tối nay.", "Ván khuôn tầng 7 đã sẵn sàng."],
+    "WK-16": ["Lệch tim cột tầng 5 chỉ 3 mm, đạt.", "Quan trắc lún bồn T-01 ổn định."],
+    "WK-17": ["Tải 85 tấn, bán kính 18 m, trong biểu đồ tải.", "Đang chờ rigger xác nhận móc cáp."],
+    "WK-18": ["Cột cổng ngăn lộ 3 dựng xong hôm qua.", "MBA AT2 về cảng ngày 20."],
+    "WK-19": ["Đã treo thẻ LOTO ngăn lộ 571.", "Kéo dây phải chờ xà cổng nghiệm thu."],
+    "WK-20": ["Thí nghiệm cách điện MBA AT1 đạt.", "Lọc dầu MBA dự kiến 3 ngày."],
+    "WK-21": ["Sóng 1,5 m, sà lan tạm nghỉ ca chiều.", "Bản mặt cầu dẫn đã lên nhịp 8."],
+    "WK-22": ["Cọc P-38 đóng đến cao độ thiết kế.", "Chờ kết quả PDA cọc thử."],
+    "WK-23": ["Xe TR-01 chở ống thép ra pipe rack.", "Bãi vật tư còn trống 30%."],
+    "WK-24": ["Mẻ trộn sàn tầng 6: 180 m³, mác 40.", "Độ sụt 12±2 cm, đạt."],
+    "WK-25": ["Ống khói đoạn 3 kiểm tra độ thẳng đứng.", "Hồ sơ NDT module HRSG đã đủ."],
+    "WK-26": ["Cáp cẩu đã kiểm tra, đạt yêu cầu.", "Tránh đứng dưới tải nhé mọi người!"]
+  },
+  "behaviors": {
+    "work": ["Đang thi công: {task}", "Thực hiện {task}", "Tổ đội đang làm {task}"],
+    "inspect": ["Kiểm tra hiện trường {zone}", "Đi tuần tra an toàn tại {zone}", "Nghiệm thu tại {zone}"],
+    "office": ["Họp giao ban tại Ban chỉ huy", "Cập nhật hồ sơ tại Ban chỉ huy", "Làm việc với TVGS tại văn phòng"],
+    "break": ["Nghỉ giữa ca tại nhà ăn", "Uống nước, nghỉ 15 phút", "Ăn trưa tại nhà ăn"]
+  },
+  "hseAuto": [
+    { "type": "good-practice", "severity": "low", "title": "Tổ đội tại {zone} tuân thủ PPE đầy đủ" },
+    { "type": "unsafe-condition", "severity": "medium", "title": "Vật tư để lấn lối đi tại {zone}" },
+    { "type": "near-miss", "severity": "medium", "title": "Dụng cụ rơi từ sàn công tác tại {zone}" },
+    { "type": "unsafe-act", "severity": "high", "title": "Đứng dưới tải đang nâng tại {zone}" }
+  ],
+  "ptwAuto": {
+    "ROLE-08": { "type": "hot-work", "title": "Hàn, cắt nhiệt tại {zone}" },
+    "ROLE-10": { "type": "electrical", "title": "Đấu nối thiết bị điện tại {zone}" },
+    "ROLE-11": { "type": "lifting", "title": "Cẩu lắp cấu kiện tại {zone}" },
+    "ROLE-12": { "type": "height", "title": "Làm việc trên cao tại {zone}" },
+    "ROLE-14": { "type": "lifting", "title": "Móc cáp, ra hiệu cẩu tại {zone}" }
+  }
+}

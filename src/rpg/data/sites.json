@@ -1,0 +1,163 @@
+{
+  "$comment": "Công trường cấu hình bằng dữ liệu (demo). objects dùng các loại trong ObjectRegistry của Studio; progress 0..1 = tiến độ thi công đối tượng. Cổng, văn phòng, kho, bảng HSE được ĐẶT TỰ ĐỘNG theo ranh giới & địa hình (WorldBuilder) — không có mặt bằng cố định. workforce: scale nhân với defaultSlots của nghề; fill = tỷ lệ đã có người (NPC); full = các vị trí đã đủ người.",
+  "categories": [
+    { "id": "civil", "label": "Dự án dân dụng" },
+    { "id": "industrial", "label": "Dự án công nghiệp" },
+    { "id": "infrastructure", "label": "Dự án hạ tầng" },
+    { "id": "transport", "label": "Dự án giao thông" },
+    { "id": "energy", "label": "Dự án năng lượng" },
+    { "id": "oilgas", "label": "Dự án dầu khí" },
+    { "id": "underground", "label": "Dự án công trình ngầm" },
+    { "id": "mixed", "label": "Dự án hỗn hợp" },
+    { "id": "custom", "label": "Công trường do người chơi tạo" }
+  ],
+  "sites": [
+    {
+      "id": "S-CIVIL-01", "category": "civil", "name": "Chung cư Hoa Sen 18 tầng (demo)", "scale": "1 tháp 18 tầng, 1 tầng hầm", "investment": 820, "startDate": "2026-03-01",
+      "description": "Tháp căn hộ khung bê tông cốt thép, móng cọc khoan nhồi, bao che vách kính.",
+      "map": { "width": 240, "depth": 190, "terrain": "urban", "shape": "rect", "seed": 21 },
+      "entry": { "ppe": ["helmet", "boots", "vest"], "training": ["induction"] },
+      "safety": { "status": "Tốt", "daysNoLTI": 214 },
+      "workforce": { "scale": 1.2, "fill": 0.7, "full": ["pm"] },
+      "objects": [
+        { "type": "asm.building", "name": "Tháp A (18 tầng)", "x": -10, "z": -30, "params": { "floors": 18, "lengthX": 32, "widthZ": 24, "foundation": "pile" }, "progress": 0.42 },
+        { "type": "foundation.raft", "name": "Móng bè khối đế", "x": 50, "z": -30, "params": { "length": 30, "width": 20, "height": 1.5 }, "progress": 0.3 },
+        { "type": "eq.towerCrane", "name": "Cẩu tháp TC-1", "x": 18, "z": -50, "params": { "height": 75, "jib": 45 } },
+        { "type": "civil.pad", "name": "Bãi tập kết thép", "x": -70, "z": -10, "params": { "length": 30, "width": 18 }, "progress": 1 },
+        { "type": "civil.road", "name": "Đường công vụ", "x": 0, "z": 20, "params": { "length": 180, "width": 7 }, "progress": 1 },
+        { "type": "eq.pump", "name": "Xe bơm bê tông", "x": 30, "z": 4 },
+        { "type": "process.mepUnit", "name": "Trạm biến áp tạm", "x": -75, "z": -55, "params": { "length": 4, "width": 3, "height": 2.6 }, "progress": 1 }
+      ],
+      "zones": [
+        { "name": "Khu vực chạy thử máy phát", "kind": "test", "level": "forbidden", "shape": { "type": "circle", "c": [-90, -60], "r": 8 }, "risk": 5 }
+      ]
+    },
+    {
+      "id": "S-IND-01", "category": "industrial", "name": "Nhà máy linh kiện Bình An (demo)", "scale": "2 nhà xưởng thép, 12.000 m²", "investment": 650, "startDate": "2026-01-15",
+      "description": "Hai nhà xưởng khung thép tiền chế, bồn nước PCCC và trạm điện.",
+      "map": { "width": 300, "depth": 220, "terrain": "industrial", "shape": "rect", "seed": 5 },
+      "entry": { "ppe": ["helmet", "boots", "vest"], "training": ["induction"] },
+      "safety": { "status": "Cần chú ý", "daysNoLTI": 38 },
+      "workforce": { "scale": 1, "fill": 0.6, "full": ["welder"] },
+      "objects": [
+        { "type": "asm.steelShed", "name": "Xưởng A (90 × 36 m)", "x": -50, "z": -40, "params": { "length": 90, "width": 36, "eaveHeight": 12, "bay": 9 }, "progress": 0.55 },
+        { "type": "asm.steelShed", "name": "Xưởng B (60 × 30 m)", "x": 70, "z": -40, "params": { "length": 60, "width": 30, "eaveHeight": 10, "bay": 7.5 }, "progress": 0.2 },
+        { "type": "eq.crawlerCrane", "name": "Cẩu bánh xích CC-1", "x": 70, "z": -8 },
+        { "type": "process.tank", "name": "Bồn nước PCCC", "x": 120, "z": 20, "params": { "diameter": 12, "height": 9 }, "progress": 0.6 },
+        { "type": "process.mepUnit", "name": "Trạm điện xưởng", "x": -110, "z": 15, "params": { "length": 6, "width": 4, "height": 3 }, "progress": 0.4 },
+        { "type": "civil.road", "name": "Đường nội bộ", "x": 0, "z": 35, "params": { "length": 260, "width": 8 }, "progress": 0.7 },
+        { "type": "eq.forklift", "name": "Xe nâng FL-1", "x": -20, "z": 10 }
+      ],
+      "zones": []
+    },
+    {
+      "id": "S-INFRA-01", "category": "infrastructure", "name": "Trạm xử lý nước thải KCN Phú Hưng (demo)", "scale": "Công suất 5.000 m³/ngày", "investment": 310, "startDate": "2026-05-10",
+      "description": "Bể xử lý, tuyến ống công nghệ, mương thoát và trạm điện điều khiển.",
+      "map": { "width": 220, "depth": 180, "terrain": "flat", "shape": "trapezoid", "seed": 9 },
+      "entry": { "ppe": ["helmet", "boots", "vest"], "training": ["induction"] },
+      "safety": { "status": "Tốt", "daysNoLTI": 120 },
+      "workforce": { "scale": 0.7, "fill": 0.5, "full": [] },
+      "objects": [
+        { "type": "process.tank", "name": "Bể điều hoà", "x": -35, "z": -35, "params": { "diameter": 18, "height": 7, "roof": "flat" }, "progress": 0.7 },
+        { "type": "process.tank", "name": "Bể hiếu khí", "x": 5, "z": -35, "params": { "diameter": 18, "height": 7, "roof": "flat" }, "progress": 0.35 },
+        { "type": "process.pipe", "name": "Tuyến ống nước thải", "x": -15, "z": -10, "params": { "length": 70, "diameter": 0.6, "elevation": 2.5 }, "progress": 0.3 },
+        { "type": "civil.drain", "name": "Mương thoát nước mưa", "x": 40, "z": 0, "ry": 1.5708, "params": { "length": 50, "width": 1, "depth": 1.2 }, "progress": 0.2 },
+        { "type": "civil.manhole", "name": "Hố ga HG-3", "x": 40, "z": 30, "progress": 0 },
+        { "type": "process.mepUnit", "name": "Nhà điều khiển", "x": -60, "z": 10, "params": { "length": 8, "width": 5, "height": 3.5 }, "progress": 0.5 },
+        { "type": "eq.excavator", "name": "Máy xúc EX-1", "x": 55, "z": 10 }
+      ],
+      "zones": []
+    },
+    {
+      "id": "S-TRANS-01", "category": "transport", "name": "Cầu vượt sông Lam (demo)", "scale": "Cầu 4 nhịp × 24 m", "investment": 540, "startDate": "2025-11-01",
+      "description": "Cầu dầm bê tông vượt sông, đường dẫn hai đầu cầu. Địa hình sông nước.",
+      "map": { "width": 260, "depth": 200, "terrain": "river", "shape": "rect", "seed": 4 },
+      "entry": { "ppe": ["helmet", "boots", "vest"], "training": ["induction"] },
+      "safety": { "status": "Tốt", "daysNoLTI": 301 },
+      "workforce": { "scale": 1, "fill": 0.65, "full": ["operator"] },
+      "objects": [
+        { "type": "asm.bridge", "name": "Cầu chính 4 nhịp", "x": 0, "z": -20, "params": { "spans": 4, "spanLength": 24, "deckWidth": 12, "pierHeight": 9 }, "progress": 0.48 },
+        { "type": "civil.road", "name": "Đường dẫn bờ trái", "x": -80, "z": -20, "params": { "length": 40, "width": 12 }, "progress": 0.4 },
+        { "type": "civil.road", "name": "Đường dẫn bờ phải", "x": 80, "z": -20, "params": { "length": 40, "width": 12 }, "progress": 0.1 },
+        { "type": "eq.crawlerCrane", "name": "Cẩu bánh xích CC-2", "x": -60, "z": 5 },
+        { "type": "eq.excavator", "name": "Máy xúc EX-2", "x": -80, "z": 25 }
+      ],
+      "zones": []
+    },
+    {
+      "id": "S-ENERGY-01", "category": "energy", "name": "TBA 220kV Tân Phú (demo)", "scale": "2 MBA 250 MVA, 8 ngăn lộ", "investment": 420, "startDate": "2026-02-20",
+      "description": "Trạm biến áp ngoài trời: cột cổng, máy biến áp, máng cáp, nhà điều khiển.",
+      "map": { "width": 220, "depth": 170, "terrain": "industrial", "shape": "rect", "seed": 13 },
+      "entry": { "ppe": ["helmet", "boots", "vest"], "training": ["induction"] },
+      "safety": { "status": "Tốt", "daysNoLTI": 180 },
+      "workforce": { "scale": 0.8, "fill": 0.55, "full": ["electrical-engineer"] },
+      "objects": [
+        { "type": "structure.rack", "name": "Hệ cột cổng 220kV", "x": -10, "z": -45, "params": { "length": 70, "width": 10, "height": 14, "tiers": 1, "bay": 10 }, "progress": 0.7 },
+        { "type": "process.mepUnit", "name": "MBA AT1", "x": -25, "z": -12, "params": { "length": 7, "width": 4, "height": 5 }, "progress": 0.5 },
+        { "type": "process.mepUnit", "name": "MBA AT2", "x": 5, "z": -12, "params": { "length": 7, "width": 4, "height": 5 }, "progress": 0.1 },
+        { "type": "process.tray", "name": "Máng cáp nhị thứ", "x": 40, "z": -12, "ry": 1.5708, "params": { "length": 40, "width": 0.6, "elevation": 1.2 }, "progress": 0.3 },
+        { "type": "asm.building", "name": "Nhà điều khiển 2 tầng", "x": 65, "z": 15, "params": { "floors": 2, "lengthX": 20, "widthZ": 12, "facade": "brick", "foundation": "pad" }, "progress": 0.65 },
+        { "type": "eq.crawlerCrane", "name": "Cẩu lắp MBA", "x": -50, "z": -10 }
+      ],
+      "zones": [
+        { "name": "Ngăn lộ đang mang điện", "kind": "electrical", "level": "forbidden", "shape": { "type": "box", "c": [-80, -50], "hx": 10, "hz": 8, "ry": 0 }, "risk": 5 }
+      ]
+    },
+    {
+      "id": "S-OG-01", "category": "oilgas", "name": "Kho xăng dầu ven biển Cửa Hội (demo)", "scale": "4 bồn × 10.000 m³", "investment": 980, "startDate": "2025-09-05",
+      "description": "Bồn chứa thép mái nón, giá ống công nghệ, trạm bơm. Địa hình ven biển.",
+      "map": { "width": 280, "depth": 220, "terrain": "coastal", "shape": "rect", "seed": 17 },
+      "entry": { "ppe": ["helmet", "boots", "vest", "glasses"], "training": ["induction"] },
+      "ppePolicy": { "$comment": "Quy định RIÊNG của dự án này (không áp cho dự án khác): màu mũ theo nhóm nghề", "helmetColors": { "byGroup": { "A": "white", "B": "blue", "C": "blue", "D": "green", "E": "yellow" }, "byRole": { "hse": "green" } } },
+      "safety": { "status": "Cần chú ý", "daysNoLTI": 64 },
+      "workforce": { "scale": 1.1, "fill": 0.7, "full": ["hse"] },
+      "objects": [
+        { "type": "process.tank", "name": "Bồn T-101", "x": -60, "z": 10, "params": { "diameter": 24, "height": 14 }, "progress": 0.9 },
+        { "type": "process.tank", "name": "Bồn T-102", "x": -20, "z": 10, "params": { "diameter": 24, "height": 14 }, "progress": 0.6 },
+        { "type": "process.tank", "name": "Bồn T-103", "x": 20, "z": 10, "params": { "diameter": 24, "height": 14 }, "progress": 0.25 },
+        { "type": "structure.rack", "name": "Giá ống công nghệ", "x": -20, "z": 42, "params": { "length": 110, "width": 6, "height": 7, "tiers": 2 }, "progress": 0.4 },
+        { "type": "process.pipe", "name": "Tuyến ống xuất", "x": 60, "z": 40, "ry": 1.5708, "params": { "length": 40, "diameter": 0.5, "elevation": 2 }, "progress": 0.2 },
+        { "type": "process.mepUnit", "name": "Trạm bơm xuất", "x": 80, "z": 10, "params": { "length": 8, "width": 5, "height": 3.5 }, "progress": 0.3 },
+        { "type": "eq.dozer", "name": "Máy ủi D-1", "x": 100, "z": 50 }
+      ],
+      "zones": []
+    },
+    {
+      "id": "S-UG-01", "category": "underground", "name": "Ga ngầm Metro số 3 – Ga S5 (demo)", "scale": "Hố đào sâu 18 m, 2 tầng hầm", "investment": 1500, "startDate": "2025-07-01",
+      "description": "Hố đào ga ngầm (móng bè lớn), cửa lên xuống, mương và hố ga thoát nước.",
+      "map": { "width": 240, "depth": 180, "terrain": "urban", "shape": "L", "seed": 2 },
+      "entry": { "ppe": ["helmet", "boots", "vest"], "training": ["induction"] },
+      "safety": { "status": "Tốt", "daysNoLTI": 95 },
+      "workforce": { "scale": 1.3, "fill": 0.75, "full": ["civil-engineer"] },
+      "objects": [
+        { "type": "foundation.raft", "name": "Đáy hố đào ga (móng bè)", "x": -40, "z": -50, "params": { "length": 60, "width": 22, "height": 2 }, "progress": 0.35 },
+        { "type": "asm.building", "name": "Cửa lên xuống số 1", "x": 30, "z": 15, "params": { "floors": 2, "lengthX": 14, "widthZ": 10, "facade": "glass", "foundation": "raft" }, "progress": 0.2 },
+        { "type": "civil.drain", "name": "Mương thu nước hố đào", "x": -40, "z": -25, "params": { "length": 60, "width": 0.8, "depth": 1 }, "progress": 0.5 },
+        { "type": "civil.manhole", "name": "Hố ga bơm", "x": -80, "z": -25, "progress": 0.5 },
+        { "type": "eq.excavator", "name": "Máy xúc gầu dài", "x": 0, "z": -60 },
+        { "type": "eq.dumpTruck", "name": "Xe ben chở đất", "x": -10, "z": -20 },
+        { "type": "eq.pileDriver", "name": "Máy khoan tường vây", "x": -85, "z": -65 }
+      ],
+      "zones": [
+        { "name": "Khu vực phá dỡ kết cấu tạm", "kind": "demolition", "level": "forbidden", "shape": { "type": "box", "c": [-95, 10], "hx": 8, "hz": 8, "ry": 0 }, "risk": 5 }
+      ]
+    },
+    {
+      "id": "S-MIX-01", "category": "mixed", "name": "Khu phức hợp Sao Mai (demo)", "scale": "Tháp văn phòng 25 tầng + trung tâm logistics", "investment": 2100, "startDate": "2025-12-01",
+      "description": "Tháp văn phòng, nhà kho logistics khung thép, đường nội bộ.",
+      "map": { "width": 320, "depth": 240, "terrain": "flat", "shape": "rect", "seed": 31 },
+      "entry": { "ppe": ["helmet", "boots", "vest"], "training": ["induction"] },
+      "safety": { "status": "Tốt", "daysNoLTI": 156 },
+      "workforce": { "scale": 1.5, "fill": 0.6, "full": ["pm", "site-manager"] },
+      "objects": [
+        { "type": "asm.building", "name": "Tháp văn phòng (25 tầng)", "x": -60, "z": -45, "params": { "floors": 25, "lengthX": 30, "widthZ": 25 }, "progress": 0.3 },
+        { "type": "asm.steelShed", "name": "Kho logistics (100 × 40 m)", "x": 70, "z": -40, "params": { "length": 100, "width": 40, "eaveHeight": 14, "bay": 10 }, "progress": 0.5 },
+        { "type": "eq.towerCrane", "name": "Cẩu tháp TC-A", "x": -30, "z": -65, "params": { "height": 100, "jib": 50 } },
+        { "type": "eq.crawlerCrane", "name": "Cẩu bánh xích CC-B", "x": 70, "z": -8 },
+        { "type": "civil.road", "name": "Đường nội bộ D1", "x": 0, "z": 30, "params": { "length": 280, "width": 8 }, "progress": 0.8 },
+        { "type": "eq.mixer", "name": "Xe trộn MX-1", "x": -20, "z": 14 }
+      ],
+      "zones": []
+    }
+  ]
+}

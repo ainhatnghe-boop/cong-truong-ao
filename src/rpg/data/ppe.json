@@ -1,0 +1,50 @@
+{
+  "$comment": "ppeDefinitions — PPE được CÔNG NHẬN trong gameplay chỉ khi: đã được cấp (owned) + đang mặc (equipped). 'satisfies' = các yêu cầu PPE (id dùng trong roles/sites/safety) mà món này đáp ứng. 'slot' độc quyền: 2 món cùng slot không mặc cùng lúc; 'conflicts' = xung đột thêm. 'part' = bộ phận 3D. Màu/kiểu (styles) chỉ là ngoại hình. Cơ chế gameplay, không phải tiêu chuẩn PPE thực tế.",
+  "categories": [
+    { "id": "head", "label": "Mũ bảo hộ" },
+    { "id": "eyeface", "label": "Mắt & mặt" },
+    { "id": "hand", "label": "Tay" },
+    { "id": "foot", "label": "Chân" },
+    { "id": "hearing", "label": "Thính giác" },
+    { "id": "other", "label": "Trang bị khác" }
+  ],
+  "items": [
+    { "id": "helmet", "label": "Mũ bảo hộ", "icon": "⛑", "category": "head", "slot": "head", "part": "helmet", "basic": true, "satisfies": ["helmet"], "desc": "Mũ cứng có vành, quai cài cằm.", "use": "Bắt buộc khi vào trong hàng rào công trường." },
+    { "id": "glasses", "label": "Kính bảo hộ", "icon": "🥽", "category": "eyeface", "slot": "eyes", "part": "glasses", "satisfies": ["glasses"], "desc": "Kính chống va đập, mắt kính trong.", "use": "Khu vực vật rơi, cắt mài, nhiều nghề kỹ thuật." },
+    { "id": "goggles", "label": "Kính chống bụi", "icon": "🥽", "category": "eyeface", "slot": "eyes", "part": "goggles", "satisfies": ["glasses"], "desc": "Kính ôm kín có dây đeo.", "use": "Đáp ứng yêu cầu kính bảo hộ; phù hợp khu vực bụi." },
+    { "id": "face-shield", "label": "Tấm che mặt", "icon": "🛡", "category": "eyeface", "slot": "face", "part": "faceShield", "satisfies": ["face-shield"], "conflicts": ["welding-mask"], "desc": "Tấm nhựa trong gắn vào vành mũ.", "use": "Mài, cắt, hoá chất bắn tóe (mô phỏng)." },
+    { "id": "welding-mask", "label": "Mặt nạ hàn", "icon": "🛡", "category": "eyeface", "slot": "face", "part": "weldingMask", "satisfies": ["welding-mask"], "desc": "Mặt nạ hàn lật, kính lọc tối.", "use": "Bắt buộc với thợ hàn." },
+    { "id": "respirator", "label": "Mặt nạ phòng độc", "icon": "😷", "category": "eyeface", "slot": "mouth", "part": "respirator", "satisfies": ["respirator"], "desc": "Bán mặt nạ có 2 phin lọc.", "use": "Không gian hạn chế, khí độc (mô phỏng)." },
+    { "id": "gloves", "label": "Găng tay thông thường", "icon": "🧤", "category": "hand", "slot": "hands", "part": "gloves", "style": "work", "satisfies": ["gloves"], "desc": "Găng vải phủ cao su.", "use": "Nghề thi công cầm nắm vật liệu." },
+    { "id": "cut-gloves", "label": "Găng chống cắt", "icon": "🧤", "category": "hand", "slot": "hands", "part": "gloves", "style": "cut", "satisfies": ["gloves"], "desc": "Găng sợi chống cắt cấp cao.", "use": "Đáp ứng yêu cầu găng tay; phù hợp cắt tôn, thép." },
+    { "id": "insulated-gloves", "label": "Găng cách điện", "icon": "⚡", "category": "hand", "slot": "hands", "part": "gloves", "style": "insulated", "satisfies": ["insulated-gloves", "gloves"], "desc": "Găng cao su cách điện chuyên dụng.", "use": "Thợ điện, kỹ sư điện, khu vực thiết bị điện." },
+    { "id": "boots", "label": "Giày bảo hộ", "icon": "🥾", "category": "foot", "slot": "feet", "part": "boots", "basic": true, "satisfies": ["boots"], "desc": "Giày mũi thép, đế chống đinh.", "use": "Bắt buộc khi vào trong hàng rào công trường." },
+    { "id": "rubber-boots", "label": "Ủng bảo hộ", "icon": "🥾", "category": "foot", "slot": "feet", "part": "rubberBoots", "satisfies": ["boots"], "desc": "Ủng cao su mũi thép, cổ cao.", "use": "Đáp ứng yêu cầu giày bảo hộ; phù hợp nền ướt, đổ bê tông." },
+    { "id": "earplugs", "label": "Nút tai chống ồn", "icon": "🎧", "category": "hearing", "slot": "ears-in", "part": "earplugs", "satisfies": ["earmuffs"], "desc": "Nút tai xốp có dây.", "use": "Đáp ứng yêu cầu bảo vệ thính giác." },
+    { "id": "earmuffs", "label": "Chụp tai chống ồn", "icon": "🎧", "category": "hearing", "slot": "ears-out", "part": "earmuffs", "satisfies": ["earmuffs"], "desc": "Chụp tai gắn kèm mũ bảo hộ.", "use": "Khu vực máy móc, tiếng ồn lớn." },
+    { "id": "vest", "label": "Áo phản quang", "icon": "🦺", "category": "other", "slot": "vest", "part": "vest", "basic": true, "satisfies": ["vest"], "desc": "Áo lưới phản quang 2 dải.", "use": "Bắt buộc khi vào trong hàng rào công trường." },
+    { "id": "harness", "label": "Dây đai an toàn toàn thân", "icon": "🪢", "category": "other", "slot": "harness", "part": "harness", "satisfies": ["harness"], "desc": "Đai toàn thân, móc chữ D sau lưng.", "use": "Làm việc trên cao, lắp dựng kết cấu." }
+  ],
+  "styles": {
+    "helmetColors": [
+      { "id": "white", "label": "Trắng", "color": "#F5F7FA" },
+      { "id": "yellow", "label": "Vàng", "color": "#FACC15" },
+      { "id": "blue", "label": "Xanh dương", "color": "#2563EB" },
+      { "id": "red", "label": "Đỏ", "color": "#D93A2B" },
+      { "id": "green", "label": "Xanh lá", "color": "#16A34A" },
+      { "id": "orange", "label": "Cam", "color": "#F97316" }
+    ],
+    "helmetStyles": [
+      { "id": "cap", "label": "Vành trước" },
+      { "id": "full", "label": "Vành tròn" }
+    ],
+    "vestColors": [
+      { "id": "orange", "label": "Cam phản quang", "color": "#FF7A1A" },
+      { "id": "lime", "label": "Vàng chanh", "color": "#C6F432" }
+    ],
+    "bootColors": [
+      { "id": "black", "label": "Đen", "color": "#1F2328" },
+      { "id": "brown", "label": "Nâu", "color": "#5B3A24" }
+    ]
+  }
+}
