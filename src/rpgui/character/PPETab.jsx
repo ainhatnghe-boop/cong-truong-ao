@@ -50,7 +50,7 @@ export default function PPETab({ ed }) {
   if (!ed.caps.includes('ppe'))
     return (
       <div className="cc-tab">
-        <p className="cc-lock">🔒 Bộ dựng “{ed.asset.label}” chưa hỗ trợ hiển thị PPE.</p>
+        <p className="cc-lock">🔒 Model “{ed.asset.label}” chưa tách PPE (mũ/áo/giày) thành khối riêng trong GLB — chọn bộ dựng khác (tab Thông tin) nếu muốn bật/tắt PPE trên người.</p>
       </div>
     );
   const rule = ed.helmetRule ? S.helmetColors.find((c) => c.id === ed.helmetRule) : null;

@@ -11,7 +11,7 @@ export default function OutfitTab({ ed }) {
   if (!ed.caps.includes('outfit'))
     return (
       <div className="cc-tab">
-        <p className="cc-lock">🔒 Bộ dựng “{ed.asset.label}” chưa hỗ trợ đổi trang phục.</p>
+        <p className="cc-lock">🔒 Model “{ed.asset.label}” đã tạc liền trang phục vào khối mesh (không tách rời được) — chọn bộ dựng khác (tab Thông tin) nếu muốn đổi trang phục.</p>
       </div>
     );
   const suggested = (def.accessories ?? []).filter((id) => !ed.character.accessories.includes(id));
